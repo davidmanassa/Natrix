@@ -1,0 +1,25 @@
+
+
+// soma dois arrays (inicializados de maneira diferente) e faz print
+
+
+var t_size : int = -25 ;		// erro, numero negativo
+
+
+var t_arr = array t_size of int filled by 2 ;
+
+
+type s = 1 .. t_size ; 
+type custom_array : array s of int ;
+
+
+var c_arr : custom_array filled by 0 ; 
+foreach i in 0 .. t_size do { c_arr[i] := i ; }
+
+
+foreach i in 0 .. t_size do { 
+
+	c_arr[i] := t_arr[i] + c_arr[i] ;
+	print(c_arr[i]) ; 
+
+}

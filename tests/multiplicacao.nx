@@ -1,0 +1,9 @@
+
+// multiplicação de dois numeros
+
+var x : int = 5 ; 
+var y : int = 10 ;
+ 
+var multi : int = (x * y) ;
+
+print(multi) ; 

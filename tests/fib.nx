@@ -1,0 +1,21 @@
+
+
+// print do fibonacci até 10
+
+var n1 : int = 1 ;
+var n2 : int = 1 ;
+var temp : int = 0 ;
+
+print(n1) ;
+print(n2) ;
+
+foreach i in 2..10 do {
+	
+	temp := n1 + n2 ;
+	n1 := n2 ;
+	n2 := temp ;
+
+	print(temp) ;
+
+}
+

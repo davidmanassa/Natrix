@@ -1,0 +1,14 @@
+
+
+// fatorial de 10
+
+
+var res : int = 1 ;
+
+foreach i in 2 .. 10 do {
+	
+	res = (res * i) ;    // erro de sintaxe (=)
+
+}
+
+print(res) ;
