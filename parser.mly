@@ -1,4 +1,8 @@
-(* Parser para Natrix *)
+(*
+
+Parser para Natrix 
+
+*)
 
 %{
   open Ast
@@ -6,18 +10,19 @@
 
 %token <int> INT
 %token <string> IDENT
-%token TYPE, VAR, PRINT, IF, THEN, ELSE, FILLED, BY, FOREACH, DO, IN, TRUE, FALSE, MAXINT, MININT, SIZE
+%token TYPE, VAR, ARRAY, OF, FILLED, BY, INTEGER, IF, THEN, ELSE, FOREACH, IN, DO, PRINT, SIZE
 %token EOF
 
-
-%token LP RP
+%token LPARENT RPARENT
+%token LBRACKET RBRACKET
+%token LKEY RKEY
 %token PLUS MINUS TIMES DIV
-%token EQ
-%token COMP BIG BIGEQUAL SMALL SMALLEQUAL NEG
+%token EQUAL NOTEQUAL
+%token BIGGER BIGGEREQUAL SMALLER SMALLEQUAL
 
 /* definição das prioridades e associatividades dos tokens */
 %left PLUS MINUS
-%left TIMES DIV
+%left MUL DIV
 
 /* ponto de entrada da gramática */
 %start prog
@@ -30,36 +35,58 @@ prog:
 | p = inst* EOF { p }
 ;
 
-inst:                                                          
-| SET id = IDENT EQ e = expr SEQ 	 				                           { Dec (id, e) }
-| id = IDENT EQ e = expr SEQ 				                                 { Set (id, e) }
-| PRINT e = expr SEQ                  	 				                     { Print e }
-| IF t = test THEN LP i1 = inst* RP ELSE LP i2 = inst* RP            { Cond (t, i1, i2) }
-| WHILE t = test DO LP i = inst* RP					                         { Loop (t, i) }
-| PASS SEQ    																											 { Nop } /* não fazer nada */ 	 
+/*
+
+var	_name_ : type = 0	;	
+							vtype   ---> 	tipos
+							vvalue	---> 	valores
+
+		Ver suporte para mais tipos de dados: (Apesar de não dito)
+				float
+				string
+
+_name_ := 0 ; 
+			ver quando _name_ é array
+
+_name_ + _name_ ;
+
+print(_name_);
+
+*/
+
+inst:                                  
+| VAR id = IDENT COLON vt = vtype EQUAL val = vvalue SEMICOLON						{ Set (id, vt, val) }
+| id = IDENT COLON EQUAL val = vvalue SEMICOLON										{ ReSet (id, val) }
+| PRINT LPARENT id = IDENT RPARENT	SEMICOLON										{ Print (id) }
+| IF LPARENT t = test RPARENT THEN LKEY ins = inst RKEY 							{ If (t, ins) }
+| IF LPARENT t = test RPARENT THEN LKEY ins = inst RKEY ELSE LKEY ins2 = inst RKEY	{ IfE (t, ins) }  																											 { Nop } /* não fazer nada */ 	 
 ;
 
+vtype:
+| ti = INTEGER																		{ I ti }
+
+vvalue:
+| vi = INT 		  																	{ Int vi }
+
 expr:
-| ci = INT                        					                         { I ci }
-| id = IDENT                     					                           { Var id }
-| e1 = expr o = op e2 = expr     					                           { Op (o, e1, e2) }
-| LP e = expr RP                					                           { e }
+| ci = INT                        					                         		{ I ci }
+| id = IDENT                     					                           		{ Var id }
+| e1 = expr o = op e2 = expr     					                           		{ Op (o, e1, e2) }
+| LPARENT e = expr RPARENT                					                   		{ e }
 ;
 
 test:
-| TRUE                                                               { B true }  
-| FALSE                                                              { B false }     
-| e1 = expr COMP e2 = expr		 					                             { Comp (e1, e2) }
-| e1 = expr BIG e2 = expr		 					                               { Big (e1, e2) }
-| e1 = expr BIGEQUAL e2 = expr		 					                         { BigEqual (e1, e2) }
-| e1 = expr SMALL e2 = expr		 					                             { Small (e1, e2) }
-| e1 = expr SMALLEQUAL e2 = expr		 					                       { SmallEqual (e1, e2) }
-| NEG t = test		 			 					                { Neg t }
+| e1 = expr EQUAL e2 = expr		 					                             	{ Equal (e1, e2) }
+| e1 = expr NOTEQUAL e2 = expr 														{ NotEqual (e1, e2) }
+| e1 = expr BIGGER e2 = expr		 					                            { Bigger (e1, e2) }
+| e1 = expr BIGGEREQUAL e2 = expr 													{ BiggerEqual (e1, e2) }
+| e1 = expr SMALLER e2 = expr		 					                            { Smaller (e1, e2) }
+| e1 = expr SMALLEREQUAL e2 = expr													{ Bigger (e1, e2) }
 ;
 
 %inline op:
-| PLUS  				              								{ Add }
-| MINUS 																															 { Sub }
-| TIMES 																											       { Mul }
-| DIV 																															 { Div }
+| PLUS  				              												{ Add }
+| MINUS 																	 		{ Sub }
+| MUL 																		       	{ Mul }
+| DIV 																			 	{ Div }
 ;
