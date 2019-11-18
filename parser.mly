@@ -59,14 +59,16 @@ inst:
 | id = IDENT COLON EQUAL val = vvalue SEMICOLON										{ ReSet (id, val) }
 | PRINT LPARENT id = IDENT RPARENT	SEMICOLON										{ Print (id) }
 | IF LPARENT t = test RPARENT THEN LKEY ins = inst RKEY 							{ If (t, ins) }
-| IF LPARENT t = test RPARENT THEN LKEY ins = inst RKEY ELSE LKEY ins2 = inst RKEY	{ IfE (t, ins) }  																											 { Nop } /* não fazer nada */ 	 
+| IF LPARENT t = test RPARENT THEN LKEY ins = inst RKEY ELSE LKEY ins2 = inst RKEY	{ IfE (t, ins) }
 ;
 
 vtype:
 | ti = INTEGER																		{ I ti }
+;
 
 vvalue:
 | vi = INT 		  																	{ Int vi }
+;
 
 expr:
 | ci = INT                        					                         		{ I ci }

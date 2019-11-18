@@ -99,15 +99,17 @@ let equal = ['=']
 let negation = ['!']
 let bigger = ['>']
 let smaller = ['<']
+let slash = ['/']
 let biggerequal = bigger equal
 let smallerequal = smaller equal
 let notequal = negation equal
+let commentt = slash slash
 
 (*	| "#" [^'\n']* '\n' { newline lexbuf; token lexbuf } *)
 
 rule token = parse
 	| "\n"			{ newline lexbuf; token lexbuf }
-	| "/" 			{comment lexbuf} 
+	| commentt 		{ comment lexbuf } 
 	| space+		{ token lexbuf }
 	| ident as id 	{ id_or_kwd id }
 	| "+"			{ PLUS }
@@ -133,8 +135,7 @@ rule token = parse
 	| _ as c		{ raise (Lexing_error c) }
 
 and comment = parse
-	| "/" { comment lexbuf }
-	| _ {comment lexbuf }
+	| _ { comment lexbuf }
 	| '\n' { token lexbuf }
 	| eof { raise (Lexing_error "eof") }
 
