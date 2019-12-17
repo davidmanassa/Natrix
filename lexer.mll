@@ -26,7 +26,7 @@
         "do", DO;
         "print", PRINT;
         "size", SIZE;
-        "int", INTEGER
+        "int", TINT
       ];
     
     fun s -> try Hashtbl.find h s with Not_found -> IDENT s

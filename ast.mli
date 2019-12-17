@@ -9,7 +9,7 @@ type binary_operation =
   | Band | Bor
 
 type value_type = 
-  | Tint | Tchar
+  | Tint
 
 type constant =
   | Cnone

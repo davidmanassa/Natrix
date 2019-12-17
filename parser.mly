@@ -9,8 +9,9 @@
 %token <Ast.binary_operation> BINOP
 %token <Ast.value_type> VALUETYPE
 %token <string> IDENT
-%token TYPE VAR ARRAY OF FILLED BY INTEGER IF THEN ELSE FOREACH IN DO PRINT SIZE EQUAL
+%token TYPE VAR ARRAY OF FILLED BY IF THEN ELSE FOREACH IN DO PRINT SIZE EQUAL
 %token EOF
+%token TINT
 %token LPARENT RPARENT LBRACKET RBRACKET LKEY RKEY
 %token AND OR
 %token SEMICOLON COLON NEWLINE
@@ -28,7 +29,6 @@
 /* Ponto de entrada da gramática */
 %start program
 
-
 %type <Ast.program> program
 %%
 
@@ -43,7 +43,6 @@ expression:
     | LPARENT e = expression RPARENT                                { e }
 ;
 
-
 statement:
     | VAR id = ident COLON t = value_type EQUAL e = expression SEMICOLON                                { Sassign (id, t, e) }  
     | id = ident COLON EQUAL e = expression SEMICOLON                                                   { Sreassign (id, e) }
@@ -52,9 +51,8 @@ statement:
     | IF LPARENT c = expression RPARENT THEN LKEY st = statement+ RKEY ELSE LKEY st2 = statement+ RKEY	{ Sifelse (c, Sblock st, Sblock st2) }
 ;
 
-
 %inline value_type:
-    | t=VALUETYPE                                                { t }                                                       
+    | TINT                                                      { Tint }                                                       
 ;
 
 %inline binary_operator:
@@ -66,7 +64,6 @@ statement:
     | AND                                                       { Band }
     | OR                                                        { Bor }
 ;   
-
 
 ident:
     id = IDENT                                                  { id }

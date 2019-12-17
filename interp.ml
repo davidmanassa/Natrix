@@ -5,23 +5,20 @@ open Format
 exception Error of string
 let error s = raise (Error s)
 
-(* Os valores de Mini-Python
+(*  Valores:
 
-   - uma diferença notável com Python : utilizamos aqui o tipo int "máquina"
-     enquanto os inteiros de Python têm precisão arbitrária ; poderiamos
-     utilizar o tipo Big_int de OCaml mas preferimos aqui a opção cómoda
-     e fácil ;
+    Int de 64 bits
 
-   - o que Python designa de lista é na verdade um vector redimensionável ;
-     no fragmento aqui considerado, não há forma de modificar o comprimento,
-     logo um simples vector OCaml chegará *)
+    Listas são na verdade vetores redimensionáveis, porem neste contexto não há forma de modificar o comprimento.
 
+*)
 type value =
   | Vnone
   | Vbool of bool
   | Vint of int
   | Vstring of string
   | Vlist of value array
+
 
 (* Vizualização *)
 let rec print_value = function
@@ -31,10 +28,11 @@ let rec print_value = function
   
 (* Interpretação booleana
 
-   Em Python, qualquer valor pode ser utilizado como um valor boleano :
-   None, a lista vazia, a string vazia o inteiro 0 são considerados como
-   False e qualquer outro valor como True *)
+  Qualquer valor pode ser utilizado como um valor boleano:
+  None, a lista vazia, a string vazia o inteiro 0 são considerados como False
+  e qualquer outro valor como True
 
+*)
 let is_false = function
   | Vnone
   | Vbool false
@@ -45,15 +43,11 @@ let is_false = function
 
 let is_true v = not (is_false v)
 
-(* Comparações (questão opcional)
+(* Comparações
 
-   Vamos aqui nos esforçar parea aceitar comparações enter booleanos e
-   inteiros, mas apesar de tal esforço, permaneçam diferenças com o
-   Python.
-
-   De fqcto em Python (3) recusa comparações tais como  True < None
-   ou ainda "" < []  que aqui são ainda aceites. *)
-
+  Comparações entre diferentes tipos
+  
+*)
 let rec compare_list a1 n1 a2 n2 i =
   if i = n1 && i = n2 then 0
   else if i = n1 then -1
@@ -98,7 +92,6 @@ let binary_operation op v1 v2 =
   Variáveis introduzidas por atribuições são arquivadas numa tabela de hash passada como argumento às funções seguintes com o nome 'ctx'
 
 *)
-
 type ctx = (string, value) Hashtbl.t
 
 
@@ -111,9 +104,12 @@ let rec expression ctx = function
       Vint n
   | Ecst (Cstring s) ->
       Vstring s
+  | Eident id -> 
+      if not (Hashtbl.mem ctx id) then error "unbound variable";
+      Hashtbl.find ctx id
   | Ebinop (Badd | Bsub | Bmul | Bdiv 
-        | Bequal | Bnotequal | Bbigger | Bbiggerequal | Bsmaller | Bsmallerequal as op, e1, e2) ->
-      binary_operation op (expression ctx e1) (expression ctx e2)
+      | Bequal | Bnotequal | Bbigger | Bbiggerequal | Bsmaller | Bsmallerequal as op, e1, e2) ->
+        binary_operation op (expression ctx e1) (expression ctx e2)
   | _ -> error "unsupported expression"
 
 
@@ -122,12 +118,13 @@ and expr_int ctx e = match expression ctx e with
   | Vint n -> n
   | _ -> error "integer expected"
 
-
 (* interpretação de uma instrução - não devolve nada *)
 and statement ctx = function
-  | Sassign (id, ty, e) ->
-      Hashtbl.replace ctx id (expression ctx e)
-  | Sreassign (id, e) -> ()
+  | Sassign (id, t, e) -> (*    Adicionar verificação para ver se corresponde com o tipo    *)
+    Hashtbl.replace ctx id (expression ctx e)
+  | Sreassign (id, e) ->
+    if not (Hashtbl.mem ctx id) then error ("unbound variable " ^ id);
+    Hashtbl.replace ctx id (expression ctx e)
   | Sprint e ->
     print_value (expression ctx e); printf "@."
   | Sif (c, st) ->

@@ -11,8 +11,10 @@ then {
     print("false2");
 }
 
+var x : int = 1;
 
+x := x + 3;
 
-print("Olá mundo");
+print(x + 2);
 
 
