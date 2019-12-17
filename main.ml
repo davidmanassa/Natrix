@@ -32,7 +32,7 @@ let report (b,e) =
 
 let () =
   let c = open_in file in
-  let lb = Lexing.from_channel c in
+  let lb = Lexing.from_channel c in  (*   lb = Lexing buffer   *)
   try
     let f = Parser.program Lexer.next_token lb in
     close_in c;

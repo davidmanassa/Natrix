@@ -11,8 +11,23 @@
   let id_or_kwd =
     let h = Hashtbl.create 32 in
     List.iter (fun (s, tok) -> Hashtbl.add h s tok)
-      ["print", PRINT; 
-      "var", VAR];
+      [
+        "type", TYPE;
+        "var", VAR;
+        "array", ARRAY;
+        "of", OF;
+        "filled", FILLED;
+        "by", BY;
+        "if", IF;
+        "then", THEN;
+        "else", ELSE;
+        "foreach", FOREACH;
+        "in", IN;
+        "do", DO;
+        "print", PRINT;
+        "size", SIZE;
+        "int", INTEGER
+      ];
     
     fun s -> try Hashtbl.find h s with Not_found -> IDENT s
 
@@ -28,14 +43,27 @@ let space = ' ' | '\t'
 let comment = "//" [^'\n']*
 
 rule next_tokens = parse
-| (space | comment | '\n')+       { next_tokens lexbuf }
+  | (space | comment)+            { next_tokens lexbuf }
+  | '\n'                          { new_line lexbuf; next_tokens lexbuf }
   | ident as id                   { [id_or_kwd id] }
   | '+'                           { [PLUS] }
   | '-'                           { [MINUS] }
   | '*'                           { [TIMES] }
   | '/'                           { [DIV] }
-  | '('                           { [LP] }
-  | ')'                           { [RP] }
+  | "!="                          { [BINOP Bnotequal] }
+  | '='                           { [EQUAL] }
+  | '='                           { [BINOP Bequal] }
+  | ':'                           { [COLON] }
+  | '('                           { [LPARENT] }
+  | ')'                           { [RPARENT] }
+  | '['			                      { [LBRACKET] }
+	| ']'			                      { [RBRACKET] }
+	| '{'			                      { [LKEY] }
+	| '}'			                      { [RKEY] }
+  | "<="                          { [BINOP Bsmallerequal] }
+	| '<'			                      { [BINOP Bsmaller] }
+  | ">="                          { [BINOP Bbiggerequal] }
+	| '>'			                      { [BINOP Bbigger] }
   | ';'                           { [SEMICOLON] }
   | integer as s                  { try [CONSTANT (Cint (int_of_string s))] with _ -> raise (Lexing_error ("constant too large: " ^ s)) }
   | '"'                           { [CONSTANT (Cstring (string lexbuf))] }

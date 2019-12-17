@@ -3,6 +3,15 @@ print(41+1);
 
 // Isto é um comentário
 
+if (2<1)
+then {
+    print("1+1");
+} else {
+    print("false");
+    print("false2");
+}
+
+
 
 print("Olá mundo");
 

@@ -1,9 +1,12 @@
+
 open Ast 
 
-exception error of string
+exception Error of string
+
 
 (* Compilador de expressões *)
 let compile_expr = 
+
   let rec comp env next = function
     | Ecst c -> ()
     | Eident id -> ()

@@ -83,6 +83,13 @@ let binary_operation op v1 v2 =
     | Badd, Vint n1, Vint n2 -> Vint (n1+n2)
     | Bsub, Vint n1, Vint n2 -> Vint (n1-n2)
     | Bmul, Vint n1, Vint n2 -> Vint (n1*n2)
+    | Bdiv, Vint n1, Vint n2 -> Vint (n1/n2)
+    | Bequal, _, _ -> Vbool (compare_value v1 v2 = 0)
+    | Bnotequal, _, _ -> Vbool (compare_value v1 v2 <> 0)
+    | Bsmaller, _, _ -> Vbool (compare_value v1 v2 < 0)
+    | Bsmallerequal, _, _ -> Vbool (compare_value v1 v2 <= 0)
+    | Bbigger, _, _ -> Vbool (compare_value v1 v2 > 0)
+    | Bbiggerequal, _, _ -> Vbool (compare_value v1 v2 >= 0)
     | _ -> error "unsupported operand types"
 
 
@@ -104,7 +111,8 @@ let rec expression ctx = function
       Vint n
   | Ecst (Cstring s) ->
       Vstring s
-  | Ebinop (Badd | Bsub | Bmul | Bdiv as op, e1, e2) ->
+  | Ebinop (Badd | Bsub | Bmul | Bdiv 
+        | Bequal | Bnotequal | Bbigger | Bbiggerequal | Bsmaller | Bsmallerequal as op, e1, e2) ->
       binary_operation op (expression ctx e1) (expression ctx e2)
   | _ -> error "unsupported expression"
 
@@ -117,10 +125,15 @@ and expr_int ctx e = match expression ctx e with
 
 (* interpretação de uma instrução - não devolve nada *)
 and statement ctx = function
-  | Sassign (id, e1) ->
-      Hashtbl.replace ctx id (expression ctx e1)
+  | Sassign (id, ty, e) ->
+      Hashtbl.replace ctx id (expression ctx e)
+  | Sreassign (id, e) -> ()
   | Sprint e ->
-      print_value (expression ctx e); printf "@."
+    print_value (expression ctx e); printf "@."
+  | Sif (c, st) ->
+    if is_true (expression ctx c) then (statement ctx st)
+  | Sifelse (c, st, st2) ->
+    if is_true (expression ctx c) then (statement ctx st) else (statement ctx st2)
   | Sblock sl ->
       block ctx sl
   
@@ -138,10 +151,3 @@ and block ctx = function
 let program s =
   statement (Hashtbl.create 17) s
 
-
-(* interpretação de um ficheiro *)
-(* let file (fl, s) =
-  List.iter
-    (fun (f,args,body) -> Hashtbl.add functions f (args, body)) fl;
-  stmt (Hashtbl.create 17) s
-*)

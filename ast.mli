@@ -5,6 +5,11 @@ type ident = string
 
 type binary_operation =
   | Badd | Bsub | Bmul | Bdiv
+  | Bequal | Bnotequal | Bbigger | Bbiggerequal | Bsmaller | Bsmallerequal
+  | Band | Bor
+
+type value_type = 
+  | Tint | Tchar
 
 type constant =
   | Cnone
@@ -18,8 +23,11 @@ type expression =
   | Ebinop of binary_operation * expression * expression
 
 and statement =
-  | Sassign of ident * expression
+  | Sassign of ident * value_type * expression
+  | Sreassign of ident * expression 
   | Sprint of expression
+  | Sif of expression * statement
+  | Sifelse of expression * statement * statement 
   | Sblock of statement list
 
 and program = statement
