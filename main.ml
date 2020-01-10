@@ -9,6 +9,10 @@ let usage = "usage: natrix [options] file.nx"
 
 let parse_only = ref false
 
+let ofile = ref "compiled.s"
+
+let set_file f s = f := s 
+
 let spec =
   [
     "--parse-only", Arg.Set parse_only, "  stop after parsing";
@@ -37,7 +41,8 @@ let () =
     let f = Parser.program Lexer.next_token lb in
     close_in c;
     if !parse_only then exit 0;
-    Interp.program f
+    Interp.program f;
+    Compile.compile_program f !ofile
   with
     | Lexer.Lexing_error s ->
 	report (lexeme_start_p lb, lexeme_end_p lb);
