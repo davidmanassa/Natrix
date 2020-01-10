@@ -21,13 +21,21 @@ type expression =
   | Ecst of constant
   | Eident of ident
   | Ebinop of binary_operation * expression * expression
+  | Einterval of expression * expression
+  | Earray of ident
+  | Eget of ident * expression
 
 and statement =
   | Sassign of ident * value_type * expression
-  | Sreassign of ident * expression 
+  | Sassignarray of ident * ident * expression
+  | Sreassign of ident * expression
+  | Sreassignarray of ident * expression * expression
   | Sprint of expression
   | Sif of expression * statement
-  | Sifelse of expression * statement * statement 
+  | Sifelse of expression * statement * statement
+  | Sforeach of ident * expression * statement
   | Sblock of statement list
+  | Stype of ident * expression
+  | Stypearray of ident * expression * value_type
 
 and program = statement

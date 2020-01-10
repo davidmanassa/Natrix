@@ -1,7 +1,40 @@
 # Natrix
+
+## Resume
+
+Tipos são:
+- Tipo int
+- Tipo intervalo
+- Tipo array (Apenas inicializa com certo tamanho e indexing)
+
+Variáveis
+- Int
+- String
+- ... 
+- Array __tipo__ filled by __value__ ( Dá valores ao tipo de array pre definido )
+
+
+## TO DO
+
+Interpreter:
+
+        type nome = [inicio .. fim] ;
+        type i_max = [10 .. maxint] ;
+
+        size()
+
+        maxint
+        minint
+
+    váriáveis locais:
+        let x = 2 in x + 2 ;
+
+
+
 ## Simple Interpreter and Compiler for Natrix Language
 
 Exercício 1: ( Programar Natrix )
+
 - Escrever vários programas “clássicos” em Natrix (factorial, procura do maior
 elemento, etc.). O objectivo é obter um conjunto pequeno mas representativos de
 programas para testar o projecto a medida que este for completado.

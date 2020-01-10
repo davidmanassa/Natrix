@@ -46,6 +46,7 @@ rule next_tokens = parse
   | (space | comment)+            { next_tokens lexbuf }
   | '\n'                          { new_line lexbuf; next_tokens lexbuf }
   | ident as id                   { [id_or_kwd id] }
+  | '.'                           { [DOT] }
   | '+'                           { [PLUS] }
   | '-'                           { [MINUS] }
   | '*'                           { [TIMES] }

@@ -17,13 +17,22 @@ type value =
   | Vbool of bool
   | Vint of int
   | Vstring of string
-  | Vlist of value array
-
+  | Varray of (value array * int * int)
+  | Vinterval of (int * int)
 
 (* Vizualização *)
 let rec print_value = function
   | Vint n -> printf "%d" n
   | Vstring s -> printf "%s" s
+  | Vbool true -> printf "True"
+  | Vbool false -> printf "False"
+  | Vinterval (a, b) -> printf " interval start=%d  end=%d " a b
+  | Varray (arr, a, b) -> begin
+      let sz = Array.length arr in
+        printf "[";
+        for i = 0 to sz-1 do print_value arr.(i); if i < sz-1 then printf ", " done;
+        printf "]"
+    end
   | _ -> error "unsupported print vaule"
   
 (* Interpretação booleana
@@ -34,11 +43,11 @@ let rec print_value = function
 
 *)
 let is_false = function
-  | Vnone
-  | Vbool false
-  | Vstring ""
-  | Vlist [||] -> true
-  | Vint n -> n = 0
+  | Vnone -> false
+  | Vbool false -> false
+  | Vstring "" -> false
+  | Vint x -> (x = 0)
+  | Varray (arr, linf, lsup) -> (Array.length arr) = 0
   | _ -> false
 
 let is_true v = not (is_false v)
@@ -56,8 +65,8 @@ let rec compare_list a1 n1 a2 n2 i =
        if c <> 0 then c else compare_list a1 n1 a2 n2 (i + 1)
 
 and compare_value v1 v2 = match v1, v2 with
-  | Vlist a1, Vlist a2 ->
-    compare_list a1 (Array.length a1) a2 (Array.length a2) 0
+  (*| Vlist a1, Vlist a2 ->
+    compare_list a1 (Array.length a1) a2 (Array.length a2) 0 *)
   | Vbool b1, Vint _ -> compare_value (Vint (if b1 then 1 else 0)) v2
   | Vint _, Vbool b2 -> compare_value v1 (Vint (if b2 then 1 else 0))
   | _ -> compare v1 v2
@@ -71,7 +80,6 @@ and compare_value v1 v2 = match v1, v2 with
      por zero
 
 *)
-
 let binary_operation op v1 v2 =
   match op, v1, v2 with
     | Badd, Vint n1, Vint n2 -> Vint (n1+n2)
@@ -105,11 +113,24 @@ let rec expression ctx = function
   | Ecst (Cstring s) ->
       Vstring s
   | Eident id -> 
-      if not (Hashtbl.mem ctx id) then error "unbound variable";
+      if not (Hashtbl.mem ctx id) then error ("unbound variable " ^ id);
       Hashtbl.find ctx id
   | Ebinop (Badd | Bsub | Bmul | Bdiv 
       | Bequal | Bnotequal | Bbigger | Bbiggerequal | Bsmaller | Bsmallerequal as op, e1, e2) ->
         binary_operation op (expression ctx e1) (expression ctx e2)
+  | Einterval (e1, e2) ->
+      Vinterval ((expr_int ctx e1), (expr_int ctx e2))
+  | Earray (id) ->
+      if not (Hashtbl.mem ctx id) then error "unbound variable";
+      Hashtbl.find ctx id
+  | Eget (id, index) ->
+    if not (Hashtbl.mem ctx id) then error ("unbound variable " ^ id);
+    match Hashtbl.find ctx id with
+      | Varray (arr, linf, lsup) ->
+        if (expr_int ctx index) < linf or (expr_int ctx index) > lsup
+        then error "index out of bounds"
+        else arr.((expr_int ctx index) - linf)
+      | _ -> error "array expected"
   | _ -> error "unsupported expression"
 
 
@@ -120,20 +141,75 @@ and expr_int ctx e = match expression ctx e with
 
 (* interpretação de uma instrução - não devolve nada *)
 and statement ctx = function
-  | Sassign (id, t, e) -> (*    Adicionar verificação para ver se corresponde com o tipo    *)
+  | Sassign (id, t, e) -> (*    Adicionar verificação para ver se corresponde com o tipo  /// Se já existir VAR ou TIPO com o nome vai redefinir  *)
     Hashtbl.replace ctx id (expression ctx e)
+  | Sassignarray (id, t, e) -> (* Dá valores ao array // T é expressão Varray*)
+    begin
+      if not (Hashtbl.mem ctx t) then error ("unbound type " ^ t);
+      match (Hashtbl.find ctx t) with
+        | Varray (arr, linf, lsup) ->
+          let narr = (Array.make (lsup - linf) (expression ctx e)) in
+            Hashtbl.replace ctx id (Varray (narr, linf, lsup))
+        | _ -> error "type array expected"
+    end
   | Sreassign (id, e) ->
     if not (Hashtbl.mem ctx id) then error ("unbound variable " ^ id);
     Hashtbl.replace ctx id (expression ctx e)
+  | Sreassignarray (id, e, v) -> begin
+    if not (Hashtbl.mem ctx id) then error ("unbound variable " ^ id);
+    match Hashtbl.find ctx id with 
+      | Varray (arr, linf, lsup) ->
+          if (expr_int ctx e) < linf or (expr_int ctx e) > lsup
+          then error "index out of bounds"
+          else begin
+              arr.((expr_int ctx e) - linf) <- (expression ctx v);
+              Hashtbl.replace ctx id (Varray (arr, linf, lsup))
+            end
+        | _ -> error "array expected"
+      end
   | Sprint e ->
     print_value (expression ctx e); printf "@."
   | Sif (c, st) ->
     if is_true (expression ctx c) then (statement ctx st)
   | Sifelse (c, st, st2) ->
     if is_true (expression ctx c) then (statement ctx st) else (statement ctx st2)
+  | Sforeach (id, range, st) -> begin
+      match expression ctx range with
+        | Vinterval (a, b) ->
+          for i = a to b do begin
+            Hashtbl.replace ctx id (Vint i); statement ctx st
+          end done
+        | _ -> error "interval expected"
+    end
+  | Stype (id, e) -> (* Tipos simples são intervalos ou inteiros, então guardamos os como varáveis normais *)
+    Hashtbl.replace ctx id (expression ctx e)
+  | Stypearray (id, indices, vt) -> (* Tipo array / Indices pode ser um intervalo ou um inteiro  / Tipo array apenas define tamanho/indexing do array *)
+    begin
+      match expression ctx indices with
+        | Vint n -> (* array 0 até n *)
+          Hashtbl.replace ctx id (Varray ([||], 0, n))
+        | Vinterval (a, b) -> (* array a até b *)
+          Hashtbl.replace ctx id (Varray ([||], a, b))
+        | _ -> error "integer or interval expected"
+    end
   | Sblock sl ->
       block ctx sl
-  
+
+(* For in Ocaml:
+
+for i = 1 to n_jobs () do
+  do_next_job ()
+done
+
+
+  | Sfor (x, e, s) ->
+      begin match expr ctx e with
+      | Vlist l ->
+        Array.iter (fun v -> Hashtbl.replace ctx x v; stmt ctx s) l
+      | _ -> error "list expected" end
+
+*)
+
 and block ctx = function
   | [] -> ()
   | s :: sl -> statement ctx s; block ctx sl

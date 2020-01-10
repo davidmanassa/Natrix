@@ -1,0 +1,1023 @@
+State 0:
+program' -> . program [ # ]
+-- On VAR shift to state 1
+-- On TYPE shift to state 39
+-- On PRINT shift to state 49
+-- On IF shift to state 54
+-- On IDENT shift to state 2
+-- On FOREACH shift to state 60
+-- On statement shift to state 66
+-- On program shift to state 88
+-- On nonempty_list(statement) shift to state 89
+-- On ident shift to state 68
+
+State 1:
+statement -> VAR . ident COLON TINT EQUAL expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> VAR . ident COLON ident FILLED BY expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On IDENT shift to state 2
+-- On ident shift to state 3
+
+State 2:
+ident -> IDENT . [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS LBRACKET IN FILLED EQUAL DOT DO DIV COLON BINOP AND ]
+-- On TIMES reduce production ident -> IDENT 
+-- On SEMICOLON reduce production ident -> IDENT 
+-- On RPARENT reduce production ident -> IDENT 
+-- On RBRACKET reduce production ident -> IDENT 
+-- On PLUS reduce production ident -> IDENT 
+-- On OR reduce production ident -> IDENT 
+-- On OF reduce production ident -> IDENT 
+-- On MINUS reduce production ident -> IDENT 
+-- On LBRACKET reduce production ident -> IDENT 
+-- On IN reduce production ident -> IDENT 
+-- On FILLED reduce production ident -> IDENT 
+-- On EQUAL reduce production ident -> IDENT 
+-- On DOT reduce production ident -> IDENT 
+-- On DO reduce production ident -> IDENT 
+-- On DIV reduce production ident -> IDENT 
+-- On COLON reduce production ident -> IDENT 
+-- On BINOP reduce production ident -> IDENT 
+-- On AND reduce production ident -> IDENT 
+
+State 3:
+statement -> VAR ident . COLON TINT EQUAL expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> VAR ident . COLON ident FILLED BY expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On COLON shift to state 4
+
+State 4:
+statement -> VAR ident COLON . TINT EQUAL expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> VAR ident COLON . ident FILLED BY expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On TINT shift to state 5
+-- On IDENT shift to state 2
+-- On ident shift to state 34
+
+State 5:
+statement -> VAR ident COLON TINT . EQUAL expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On EQUAL shift to state 6
+
+State 6:
+statement -> VAR ident COLON TINT EQUAL . expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 32
+
+State 7:
+expression -> LPARENT . expression RPARENT [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 30
+
+State 8:
+expression -> CONSTANT . [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On TIMES reduce production expression -> CONSTANT 
+-- On SEMICOLON reduce production expression -> CONSTANT 
+-- On RPARENT reduce production expression -> CONSTANT 
+-- On RBRACKET reduce production expression -> CONSTANT 
+-- On PLUS reduce production expression -> CONSTANT 
+-- On OR reduce production expression -> CONSTANT 
+-- On OF reduce production expression -> CONSTANT 
+-- On MINUS reduce production expression -> CONSTANT 
+-- On DOT reduce production expression -> CONSTANT 
+-- On DO reduce production expression -> CONSTANT 
+-- On DIV reduce production expression -> CONSTANT 
+-- On BINOP reduce production expression -> CONSTANT 
+-- On AND reduce production expression -> CONSTANT 
+
+State 9:
+expression -> ident . [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> ident . LBRACKET expression RBRACKET [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On LBRACKET shift to state 10
+-- On TIMES reduce production expression -> ident 
+-- On SEMICOLON reduce production expression -> ident 
+-- On RPARENT reduce production expression -> ident 
+-- On RBRACKET reduce production expression -> ident 
+-- On PLUS reduce production expression -> ident 
+-- On OR reduce production expression -> ident 
+-- On OF reduce production expression -> ident 
+-- On MINUS reduce production expression -> ident 
+-- On DOT reduce production expression -> ident 
+-- On DO reduce production expression -> ident 
+-- On DIV reduce production expression -> ident 
+-- On BINOP reduce production expression -> ident 
+-- On AND reduce production expression -> ident 
+
+State 10:
+expression -> ident LBRACKET . expression RBRACKET [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 11
+
+State 11:
+expression -> expression . PLUS expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> ident LBRACKET expression . RBRACKET [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On TIMES shift to state 12
+-- On RBRACKET shift to state 29
+-- On PLUS shift to state 17
+-- On OR shift to state 21
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+
+State 12:
+expression -> expression TIMES . expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 13
+
+State 13:
+expression -> expression . PLUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression TIMES expression . [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On DOT shift to state 14
+-- On TIMES reduce production expression -> expression TIMES expression 
+-- On SEMICOLON reduce production expression -> expression TIMES expression 
+-- On RPARENT reduce production expression -> expression TIMES expression 
+-- On RBRACKET reduce production expression -> expression TIMES expression 
+-- On PLUS reduce production expression -> expression TIMES expression 
+-- On OR reduce production expression -> expression TIMES expression 
+-- On OF reduce production expression -> expression TIMES expression 
+-- On MINUS reduce production expression -> expression TIMES expression 
+-- On DOT reduce production expression -> expression TIMES expression 
+-- On DO reduce production expression -> expression TIMES expression 
+-- On DIV reduce production expression -> expression TIMES expression 
+-- On BINOP reduce production expression -> expression TIMES expression 
+-- On AND reduce production expression -> expression TIMES expression 
+** Conflict on DOT
+
+State 14:
+expression -> expression DOT . DOT expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On DOT shift to state 15
+
+State 15:
+expression -> expression DOT DOT . expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 16
+
+State 16:
+expression -> expression . PLUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression DOT DOT expression . [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On TIMES shift to state 12
+-- On PLUS shift to state 17
+-- On OR shift to state 21
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+-- On TIMES reduce production expression -> expression DOT DOT expression 
+-- On SEMICOLON reduce production expression -> expression DOT DOT expression 
+-- On RPARENT reduce production expression -> expression DOT DOT expression 
+-- On RBRACKET reduce production expression -> expression DOT DOT expression 
+-- On PLUS reduce production expression -> expression DOT DOT expression 
+-- On OR reduce production expression -> expression DOT DOT expression 
+-- On OF reduce production expression -> expression DOT DOT expression 
+-- On MINUS reduce production expression -> expression DOT DOT expression 
+-- On DOT reduce production expression -> expression DOT DOT expression 
+-- On DO reduce production expression -> expression DOT DOT expression 
+-- On DIV reduce production expression -> expression DOT DOT expression 
+-- On BINOP reduce production expression -> expression DOT DOT expression 
+-- On AND reduce production expression -> expression DOT DOT expression 
+** Conflict on TIMES PLUS OR MINUS DOT DIV BINOP AND
+
+State 17:
+expression -> expression PLUS . expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 18
+
+State 18:
+expression -> expression . PLUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression PLUS expression . [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On TIMES shift to state 12
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On SEMICOLON reduce production expression -> expression PLUS expression 
+-- On RPARENT reduce production expression -> expression PLUS expression 
+-- On RBRACKET reduce production expression -> expression PLUS expression 
+-- On PLUS reduce production expression -> expression PLUS expression 
+-- On OR reduce production expression -> expression PLUS expression 
+-- On OF reduce production expression -> expression PLUS expression 
+-- On MINUS reduce production expression -> expression PLUS expression 
+-- On DOT reduce production expression -> expression PLUS expression 
+-- On DO reduce production expression -> expression PLUS expression 
+-- On BINOP reduce production expression -> expression PLUS expression 
+-- On AND reduce production expression -> expression PLUS expression 
+** Conflict on DOT
+
+State 19:
+expression -> expression DIV . expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 20
+
+State 20:
+expression -> expression . PLUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression DIV expression . [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On DOT shift to state 14
+-- On TIMES reduce production expression -> expression DIV expression 
+-- On SEMICOLON reduce production expression -> expression DIV expression 
+-- On RPARENT reduce production expression -> expression DIV expression 
+-- On RBRACKET reduce production expression -> expression DIV expression 
+-- On PLUS reduce production expression -> expression DIV expression 
+-- On OR reduce production expression -> expression DIV expression 
+-- On OF reduce production expression -> expression DIV expression 
+-- On MINUS reduce production expression -> expression DIV expression 
+-- On DOT reduce production expression -> expression DIV expression 
+-- On DO reduce production expression -> expression DIV expression 
+-- On DIV reduce production expression -> expression DIV expression 
+-- On BINOP reduce production expression -> expression DIV expression 
+-- On AND reduce production expression -> expression DIV expression 
+** Conflict on DOT
+
+State 21:
+expression -> expression OR . expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 22
+
+State 22:
+expression -> expression . PLUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression OR expression . [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On TIMES shift to state 12
+-- On PLUS shift to state 17
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+-- On SEMICOLON reduce production expression -> expression OR expression 
+-- On RPARENT reduce production expression -> expression OR expression 
+-- On RBRACKET reduce production expression -> expression OR expression 
+-- On OR reduce production expression -> expression OR expression 
+-- On OF reduce production expression -> expression OR expression 
+-- On DOT reduce production expression -> expression OR expression 
+-- On DO reduce production expression -> expression OR expression 
+** Conflict on DOT
+
+State 23:
+expression -> expression MINUS . expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 24
+
+State 24:
+expression -> expression . PLUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression MINUS expression . [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On TIMES shift to state 12
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On SEMICOLON reduce production expression -> expression MINUS expression 
+-- On RPARENT reduce production expression -> expression MINUS expression 
+-- On RBRACKET reduce production expression -> expression MINUS expression 
+-- On PLUS reduce production expression -> expression MINUS expression 
+-- On OR reduce production expression -> expression MINUS expression 
+-- On OF reduce production expression -> expression MINUS expression 
+-- On MINUS reduce production expression -> expression MINUS expression 
+-- On DOT reduce production expression -> expression MINUS expression 
+-- On DO reduce production expression -> expression MINUS expression 
+-- On BINOP reduce production expression -> expression MINUS expression 
+-- On AND reduce production expression -> expression MINUS expression 
+** Conflict on DOT
+
+State 25:
+expression -> expression BINOP . expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 26
+
+State 26:
+expression -> expression . PLUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression BINOP expression . [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On TIMES shift to state 12
+-- On PLUS shift to state 17
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On SEMICOLON reduce production expression -> expression BINOP expression 
+-- On RPARENT reduce production expression -> expression BINOP expression 
+-- On RBRACKET reduce production expression -> expression BINOP expression 
+-- On OR reduce production expression -> expression BINOP expression 
+-- On OF reduce production expression -> expression BINOP expression 
+-- On DOT reduce production expression -> expression BINOP expression 
+-- On DO reduce production expression -> expression BINOP expression 
+-- On AND reduce production expression -> expression BINOP expression 
+** Conflict on DOT
+
+State 27:
+expression -> expression AND . expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 28
+
+State 28:
+expression -> expression . PLUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression AND expression . [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On TIMES shift to state 12
+-- On PLUS shift to state 17
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On SEMICOLON reduce production expression -> expression AND expression 
+-- On RPARENT reduce production expression -> expression AND expression 
+-- On RBRACKET reduce production expression -> expression AND expression 
+-- On OR reduce production expression -> expression AND expression 
+-- On OF reduce production expression -> expression AND expression 
+-- On DOT reduce production expression -> expression AND expression 
+-- On DO reduce production expression -> expression AND expression 
+-- On AND reduce production expression -> expression AND expression 
+** Conflict on DOT
+
+State 29:
+expression -> ident LBRACKET expression RBRACKET . [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On TIMES reduce production expression -> ident LBRACKET expression RBRACKET 
+-- On SEMICOLON reduce production expression -> ident LBRACKET expression RBRACKET 
+-- On RPARENT reduce production expression -> ident LBRACKET expression RBRACKET 
+-- On RBRACKET reduce production expression -> ident LBRACKET expression RBRACKET 
+-- On PLUS reduce production expression -> ident LBRACKET expression RBRACKET 
+-- On OR reduce production expression -> ident LBRACKET expression RBRACKET 
+-- On OF reduce production expression -> ident LBRACKET expression RBRACKET 
+-- On MINUS reduce production expression -> ident LBRACKET expression RBRACKET 
+-- On DOT reduce production expression -> ident LBRACKET expression RBRACKET 
+-- On DO reduce production expression -> ident LBRACKET expression RBRACKET 
+-- On DIV reduce production expression -> ident LBRACKET expression RBRACKET 
+-- On BINOP reduce production expression -> ident LBRACKET expression RBRACKET 
+-- On AND reduce production expression -> ident LBRACKET expression RBRACKET 
+
+State 30:
+expression -> expression . PLUS expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> LPARENT expression . RPARENT [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On TIMES shift to state 12
+-- On RPARENT shift to state 31
+-- On PLUS shift to state 17
+-- On OR shift to state 21
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+
+State 31:
+expression -> LPARENT expression RPARENT . [ TIMES SEMICOLON RPARENT RBRACKET PLUS OR OF MINUS DOT DO DIV BINOP AND ]
+-- On TIMES reduce production expression -> LPARENT expression RPARENT 
+-- On SEMICOLON reduce production expression -> LPARENT expression RPARENT 
+-- On RPARENT reduce production expression -> LPARENT expression RPARENT 
+-- On RBRACKET reduce production expression -> LPARENT expression RPARENT 
+-- On PLUS reduce production expression -> LPARENT expression RPARENT 
+-- On OR reduce production expression -> LPARENT expression RPARENT 
+-- On OF reduce production expression -> LPARENT expression RPARENT 
+-- On MINUS reduce production expression -> LPARENT expression RPARENT 
+-- On DOT reduce production expression -> LPARENT expression RPARENT 
+-- On DO reduce production expression -> LPARENT expression RPARENT 
+-- On DIV reduce production expression -> LPARENT expression RPARENT 
+-- On BINOP reduce production expression -> LPARENT expression RPARENT 
+-- On AND reduce production expression -> LPARENT expression RPARENT 
+
+State 32:
+expression -> expression . PLUS expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+statement -> VAR ident COLON TINT EQUAL expression . SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On TIMES shift to state 12
+-- On SEMICOLON shift to state 33
+-- On PLUS shift to state 17
+-- On OR shift to state 21
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+
+State 33:
+statement -> VAR ident COLON TINT EQUAL expression SEMICOLON . [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On VAR reduce production statement -> VAR ident COLON TINT EQUAL expression SEMICOLON 
+-- On TYPE reduce production statement -> VAR ident COLON TINT EQUAL expression SEMICOLON 
+-- On RKEY reduce production statement -> VAR ident COLON TINT EQUAL expression SEMICOLON 
+-- On PRINT reduce production statement -> VAR ident COLON TINT EQUAL expression SEMICOLON 
+-- On IF reduce production statement -> VAR ident COLON TINT EQUAL expression SEMICOLON 
+-- On IDENT reduce production statement -> VAR ident COLON TINT EQUAL expression SEMICOLON 
+-- On FOREACH reduce production statement -> VAR ident COLON TINT EQUAL expression SEMICOLON 
+-- On EOF reduce production statement -> VAR ident COLON TINT EQUAL expression SEMICOLON 
+
+State 34:
+statement -> VAR ident COLON ident . FILLED BY expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On FILLED shift to state 35
+
+State 35:
+statement -> VAR ident COLON ident FILLED . BY expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On BY shift to state 36
+
+State 36:
+statement -> VAR ident COLON ident FILLED BY . expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 37
+
+State 37:
+expression -> expression . PLUS expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+statement -> VAR ident COLON ident FILLED BY expression . SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On TIMES shift to state 12
+-- On SEMICOLON shift to state 38
+-- On PLUS shift to state 17
+-- On OR shift to state 21
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+
+State 38:
+statement -> VAR ident COLON ident FILLED BY expression SEMICOLON . [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On VAR reduce production statement -> VAR ident COLON ident FILLED BY expression SEMICOLON 
+-- On TYPE reduce production statement -> VAR ident COLON ident FILLED BY expression SEMICOLON 
+-- On RKEY reduce production statement -> VAR ident COLON ident FILLED BY expression SEMICOLON 
+-- On PRINT reduce production statement -> VAR ident COLON ident FILLED BY expression SEMICOLON 
+-- On IF reduce production statement -> VAR ident COLON ident FILLED BY expression SEMICOLON 
+-- On IDENT reduce production statement -> VAR ident COLON ident FILLED BY expression SEMICOLON 
+-- On FOREACH reduce production statement -> VAR ident COLON ident FILLED BY expression SEMICOLON 
+-- On EOF reduce production statement -> VAR ident COLON ident FILLED BY expression SEMICOLON 
+
+State 39:
+statement -> TYPE . ident EQUAL expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> TYPE . ident EQUAL ARRAY expression OF TINT SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On IDENT shift to state 2
+-- On ident shift to state 40
+
+State 40:
+statement -> TYPE ident . EQUAL expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> TYPE ident . EQUAL ARRAY expression OF TINT SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On EQUAL shift to state 41
+
+State 41:
+statement -> TYPE ident EQUAL . expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> TYPE ident EQUAL . ARRAY expression OF TINT SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ARRAY shift to state 42
+-- On ident shift to state 9
+-- On expression shift to state 47
+
+State 42:
+statement -> TYPE ident EQUAL ARRAY . expression OF TINT SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 43
+
+State 43:
+expression -> expression . PLUS expression [ TIMES PLUS OR OF MINUS DOT DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES PLUS OR OF MINUS DOT DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES PLUS OR OF MINUS DOT DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES PLUS OR OF MINUS DOT DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES PLUS OR OF MINUS DOT DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES PLUS OR OF MINUS DOT DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES PLUS OR OF MINUS DOT DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES PLUS OR OF MINUS DOT DIV BINOP AND ]
+statement -> TYPE ident EQUAL ARRAY expression . OF TINT SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On TIMES shift to state 12
+-- On PLUS shift to state 17
+-- On OR shift to state 21
+-- On OF shift to state 44
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+
+State 44:
+statement -> TYPE ident EQUAL ARRAY expression OF . TINT SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On TINT shift to state 45
+
+State 45:
+statement -> TYPE ident EQUAL ARRAY expression OF TINT . SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On SEMICOLON shift to state 46
+
+State 46:
+statement -> TYPE ident EQUAL ARRAY expression OF TINT SEMICOLON . [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On VAR reduce production statement -> TYPE ident EQUAL ARRAY expression OF TINT SEMICOLON 
+-- On TYPE reduce production statement -> TYPE ident EQUAL ARRAY expression OF TINT SEMICOLON 
+-- On RKEY reduce production statement -> TYPE ident EQUAL ARRAY expression OF TINT SEMICOLON 
+-- On PRINT reduce production statement -> TYPE ident EQUAL ARRAY expression OF TINT SEMICOLON 
+-- On IF reduce production statement -> TYPE ident EQUAL ARRAY expression OF TINT SEMICOLON 
+-- On IDENT reduce production statement -> TYPE ident EQUAL ARRAY expression OF TINT SEMICOLON 
+-- On FOREACH reduce production statement -> TYPE ident EQUAL ARRAY expression OF TINT SEMICOLON 
+-- On EOF reduce production statement -> TYPE ident EQUAL ARRAY expression OF TINT SEMICOLON 
+
+State 47:
+expression -> expression . PLUS expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+statement -> TYPE ident EQUAL expression . SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On TIMES shift to state 12
+-- On SEMICOLON shift to state 48
+-- On PLUS shift to state 17
+-- On OR shift to state 21
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+
+State 48:
+statement -> TYPE ident EQUAL expression SEMICOLON . [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On VAR reduce production statement -> TYPE ident EQUAL expression SEMICOLON 
+-- On TYPE reduce production statement -> TYPE ident EQUAL expression SEMICOLON 
+-- On RKEY reduce production statement -> TYPE ident EQUAL expression SEMICOLON 
+-- On PRINT reduce production statement -> TYPE ident EQUAL expression SEMICOLON 
+-- On IF reduce production statement -> TYPE ident EQUAL expression SEMICOLON 
+-- On IDENT reduce production statement -> TYPE ident EQUAL expression SEMICOLON 
+-- On FOREACH reduce production statement -> TYPE ident EQUAL expression SEMICOLON 
+-- On EOF reduce production statement -> TYPE ident EQUAL expression SEMICOLON 
+
+State 49:
+statement -> PRINT . LPARENT expression RPARENT SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LPARENT shift to state 50
+
+State 50:
+statement -> PRINT LPARENT . expression RPARENT SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 51
+
+State 51:
+expression -> expression . PLUS expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+statement -> PRINT LPARENT expression . RPARENT SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On TIMES shift to state 12
+-- On RPARENT shift to state 52
+-- On PLUS shift to state 17
+-- On OR shift to state 21
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+
+State 52:
+statement -> PRINT LPARENT expression RPARENT . SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On SEMICOLON shift to state 53
+
+State 53:
+statement -> PRINT LPARENT expression RPARENT SEMICOLON . [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On VAR reduce production statement -> PRINT LPARENT expression RPARENT SEMICOLON 
+-- On TYPE reduce production statement -> PRINT LPARENT expression RPARENT SEMICOLON 
+-- On RKEY reduce production statement -> PRINT LPARENT expression RPARENT SEMICOLON 
+-- On PRINT reduce production statement -> PRINT LPARENT expression RPARENT SEMICOLON 
+-- On IF reduce production statement -> PRINT LPARENT expression RPARENT SEMICOLON 
+-- On IDENT reduce production statement -> PRINT LPARENT expression RPARENT SEMICOLON 
+-- On FOREACH reduce production statement -> PRINT LPARENT expression RPARENT SEMICOLON 
+-- On EOF reduce production statement -> PRINT LPARENT expression RPARENT SEMICOLON 
+
+State 54:
+statement -> IF . LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> IF . LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LPARENT shift to state 55
+
+State 55:
+statement -> IF LPARENT . expression RPARENT THEN LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> IF LPARENT . expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 56
+
+State 56:
+expression -> expression . PLUS expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES RPARENT PLUS OR MINUS DOT DIV BINOP AND ]
+statement -> IF LPARENT expression . RPARENT THEN LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> IF LPARENT expression . RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On TIMES shift to state 12
+-- On RPARENT shift to state 57
+-- On PLUS shift to state 17
+-- On OR shift to state 21
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+
+State 57:
+statement -> IF LPARENT expression RPARENT . THEN LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> IF LPARENT expression RPARENT . THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On THEN shift to state 58
+
+State 58:
+statement -> IF LPARENT expression RPARENT THEN . LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> IF LPARENT expression RPARENT THEN . LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LKEY shift to state 59
+
+State 59:
+statement -> IF LPARENT expression RPARENT THEN LKEY . nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> IF LPARENT expression RPARENT THEN LKEY . nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On VAR shift to state 1
+-- On TYPE shift to state 39
+-- On PRINT shift to state 49
+-- On IF shift to state 54
+-- On IDENT shift to state 2
+-- On FOREACH shift to state 60
+-- On statement shift to state 66
+-- On nonempty_list(statement) shift to state 82
+-- On ident shift to state 68
+
+State 60:
+statement -> FOREACH . ident IN expression DO LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On IDENT shift to state 2
+-- On ident shift to state 61
+
+State 61:
+statement -> FOREACH ident . IN expression DO LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On IN shift to state 62
+
+State 62:
+statement -> FOREACH ident IN . expression DO LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 63
+
+State 63:
+expression -> expression . PLUS expression [ TIMES PLUS OR MINUS DOT DO DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES PLUS OR MINUS DOT DO DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES PLUS OR MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES PLUS OR MINUS DOT DO DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES PLUS OR MINUS DOT DO DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES PLUS OR MINUS DOT DO DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES PLUS OR MINUS DOT DO DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES PLUS OR MINUS DOT DO DIV BINOP AND ]
+statement -> FOREACH ident IN expression . DO LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On TIMES shift to state 12
+-- On PLUS shift to state 17
+-- On OR shift to state 21
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DO shift to state 64
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+
+State 64:
+statement -> FOREACH ident IN expression DO . LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LKEY shift to state 65
+
+State 65:
+statement -> FOREACH ident IN expression DO LKEY . nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On VAR shift to state 1
+-- On TYPE shift to state 39
+-- On PRINT shift to state 49
+-- On IF shift to state 54
+-- On IDENT shift to state 2
+-- On FOREACH shift to state 60
+-- On statement shift to state 66
+-- On nonempty_list(statement) shift to state 80
+-- On ident shift to state 68
+
+State 66:
+nonempty_list(statement) -> statement . [ RKEY EOF ]
+nonempty_list(statement) -> statement . nonempty_list(statement) [ RKEY EOF ]
+-- On VAR shift to state 1
+-- On TYPE shift to state 39
+-- On PRINT shift to state 49
+-- On IF shift to state 54
+-- On IDENT shift to state 2
+-- On FOREACH shift to state 60
+-- On statement shift to state 66
+-- On nonempty_list(statement) shift to state 67
+-- On ident shift to state 68
+-- On RKEY reduce production nonempty_list(statement) -> statement 
+-- On EOF reduce production nonempty_list(statement) -> statement 
+
+State 67:
+nonempty_list(statement) -> statement nonempty_list(statement) . [ RKEY EOF ]
+-- On RKEY reduce production nonempty_list(statement) -> statement nonempty_list(statement) 
+-- On EOF reduce production nonempty_list(statement) -> statement nonempty_list(statement) 
+
+State 68:
+statement -> ident . COLON EQUAL expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> ident . LBRACKET expression RBRACKET COLON EQUAL expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LBRACKET shift to state 69
+-- On COLON shift to state 76
+
+State 69:
+statement -> ident LBRACKET . expression RBRACKET COLON EQUAL expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 70
+
+State 70:
+expression -> expression . PLUS expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES RBRACKET PLUS OR MINUS DOT DIV BINOP AND ]
+statement -> ident LBRACKET expression . RBRACKET COLON EQUAL expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On TIMES shift to state 12
+-- On RBRACKET shift to state 71
+-- On PLUS shift to state 17
+-- On OR shift to state 21
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+
+State 71:
+statement -> ident LBRACKET expression RBRACKET . COLON EQUAL expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On COLON shift to state 72
+
+State 72:
+statement -> ident LBRACKET expression RBRACKET COLON . EQUAL expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On EQUAL shift to state 73
+
+State 73:
+statement -> ident LBRACKET expression RBRACKET COLON EQUAL . expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 74
+
+State 74:
+expression -> expression . PLUS expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+statement -> ident LBRACKET expression RBRACKET COLON EQUAL expression . SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On TIMES shift to state 12
+-- On SEMICOLON shift to state 75
+-- On PLUS shift to state 17
+-- On OR shift to state 21
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+
+State 75:
+statement -> ident LBRACKET expression RBRACKET COLON EQUAL expression SEMICOLON . [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On VAR reduce production statement -> ident LBRACKET expression RBRACKET COLON EQUAL expression SEMICOLON 
+-- On TYPE reduce production statement -> ident LBRACKET expression RBRACKET COLON EQUAL expression SEMICOLON 
+-- On RKEY reduce production statement -> ident LBRACKET expression RBRACKET COLON EQUAL expression SEMICOLON 
+-- On PRINT reduce production statement -> ident LBRACKET expression RBRACKET COLON EQUAL expression SEMICOLON 
+-- On IF reduce production statement -> ident LBRACKET expression RBRACKET COLON EQUAL expression SEMICOLON 
+-- On IDENT reduce production statement -> ident LBRACKET expression RBRACKET COLON EQUAL expression SEMICOLON 
+-- On FOREACH reduce production statement -> ident LBRACKET expression RBRACKET COLON EQUAL expression SEMICOLON 
+-- On EOF reduce production statement -> ident LBRACKET expression RBRACKET COLON EQUAL expression SEMICOLON 
+
+State 76:
+statement -> ident COLON . EQUAL expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On EQUAL shift to state 77
+
+State 77:
+statement -> ident COLON EQUAL . expression SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LPARENT shift to state 7
+-- On IDENT shift to state 2
+-- On CONSTANT shift to state 8
+-- On ident shift to state 9
+-- On expression shift to state 78
+
+State 78:
+expression -> expression . PLUS expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . MINUS expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . TIMES expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DIV expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . BINOP expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . AND expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . OR expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+expression -> expression . DOT DOT expression [ TIMES SEMICOLON PLUS OR MINUS DOT DIV BINOP AND ]
+statement -> ident COLON EQUAL expression . SEMICOLON [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On TIMES shift to state 12
+-- On SEMICOLON shift to state 79
+-- On PLUS shift to state 17
+-- On OR shift to state 21
+-- On MINUS shift to state 23
+-- On DOT shift to state 14
+-- On DIV shift to state 19
+-- On BINOP shift to state 25
+-- On AND shift to state 27
+
+State 79:
+statement -> ident COLON EQUAL expression SEMICOLON . [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On VAR reduce production statement -> ident COLON EQUAL expression SEMICOLON 
+-- On TYPE reduce production statement -> ident COLON EQUAL expression SEMICOLON 
+-- On RKEY reduce production statement -> ident COLON EQUAL expression SEMICOLON 
+-- On PRINT reduce production statement -> ident COLON EQUAL expression SEMICOLON 
+-- On IF reduce production statement -> ident COLON EQUAL expression SEMICOLON 
+-- On IDENT reduce production statement -> ident COLON EQUAL expression SEMICOLON 
+-- On FOREACH reduce production statement -> ident COLON EQUAL expression SEMICOLON 
+-- On EOF reduce production statement -> ident COLON EQUAL expression SEMICOLON 
+
+State 80:
+statement -> FOREACH ident IN expression DO LKEY nonempty_list(statement) . RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On RKEY shift to state 81
+
+State 81:
+statement -> FOREACH ident IN expression DO LKEY nonempty_list(statement) RKEY . [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On VAR reduce production statement -> FOREACH ident IN expression DO LKEY nonempty_list(statement) RKEY 
+-- On TYPE reduce production statement -> FOREACH ident IN expression DO LKEY nonempty_list(statement) RKEY 
+-- On RKEY reduce production statement -> FOREACH ident IN expression DO LKEY nonempty_list(statement) RKEY 
+-- On PRINT reduce production statement -> FOREACH ident IN expression DO LKEY nonempty_list(statement) RKEY 
+-- On IF reduce production statement -> FOREACH ident IN expression DO LKEY nonempty_list(statement) RKEY 
+-- On IDENT reduce production statement -> FOREACH ident IN expression DO LKEY nonempty_list(statement) RKEY 
+-- On FOREACH reduce production statement -> FOREACH ident IN expression DO LKEY nonempty_list(statement) RKEY 
+-- On EOF reduce production statement -> FOREACH ident IN expression DO LKEY nonempty_list(statement) RKEY 
+
+State 82:
+statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) . RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) . RKEY ELSE LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On RKEY shift to state 83
+
+State 83:
+statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY . [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY . ELSE LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On ELSE shift to state 84
+-- On VAR reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY 
+-- On TYPE reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY 
+-- On RKEY reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY 
+-- On PRINT reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY 
+-- On IF reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY 
+-- On IDENT reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY 
+-- On FOREACH reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY 
+-- On EOF reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY 
+
+State 84:
+statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE . LKEY nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On LKEY shift to state 85
+
+State 85:
+statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY . nonempty_list(statement) RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On VAR shift to state 1
+-- On TYPE shift to state 39
+-- On PRINT shift to state 49
+-- On IF shift to state 54
+-- On IDENT shift to state 2
+-- On FOREACH shift to state 60
+-- On statement shift to state 66
+-- On nonempty_list(statement) shift to state 86
+-- On ident shift to state 68
+
+State 86:
+statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) . RKEY [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On RKEY shift to state 87
+
+State 87:
+statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY . [ VAR TYPE RKEY PRINT IF IDENT FOREACH EOF ]
+-- On VAR reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY 
+-- On TYPE reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY 
+-- On RKEY reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY 
+-- On PRINT reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY 
+-- On IF reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY 
+-- On IDENT reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY 
+-- On FOREACH reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY 
+-- On EOF reduce production statement -> IF LPARENT expression RPARENT THEN LKEY nonempty_list(statement) RKEY ELSE LKEY nonempty_list(statement) RKEY 
+
+State 88:
+program' -> program . [ # ]
+-- On # accept program
+
+State 89:
+program -> nonempty_list(statement) . EOF [ # ]
+-- On EOF shift to state 90
+
+State 90:
+program -> nonempty_list(statement) EOF . [ # ]
+-- On # reduce production program -> nonempty_list(statement) EOF 
+

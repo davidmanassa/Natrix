@@ -28,7 +28,7 @@
 
 > declaração de variáveis locais
 (formalmente) let nome = valor in (...) ;
-(exemplo) let x = 2 in y + x ; 
+(exemplo) let x = 2 in y + x ;
 
 > declaração de arrays (podem ser indexados como normalmente, e.g. nome[0])
 (formalmente) var nome : tipo filled by valor ;

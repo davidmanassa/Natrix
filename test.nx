@@ -15,6 +15,21 @@ var x : int = 1;
 
 x := x + 3;
 
-print(x + 2);
+print(2..8);
+
+foreach i in 2 .. 6 do {
+    print(i);
+}
+
+type inter = 1..10 ;
+type arr = array inter of int ;
+var farr : arr filled by 4 ;
+
+print (farr) ;
+
+farr[9] := 2;
+
+print (farr) ;
+
 
 
