@@ -119,7 +119,7 @@ let rec _menhir_goto_nonempty_list_statement_ : _menhir_env -> 'ttv_tail -> _men
         let (_menhir_stack : ('freshtv309 * _menhir_state * 'tv_statement) * _menhir_state * 'tv_nonempty_list_statement_) = Obj.magic _menhir_stack in
         ((let ((_menhir_stack, _menhir_s, (x : 'tv_statement)), _, (xs : 'tv_nonempty_list_statement_)) = _menhir_stack in
         let _v : 'tv_nonempty_list_statement_ = 
-# 197 "/usr/share/menhir/standard.mly"
+# 223 "<standard.mly>"
     ( x :: xs )
 # 125 "parser.ml"
          in
@@ -330,7 +330,7 @@ let rec _menhir_goto_nonempty_list_statement_ : _menhir_env -> 'ttv_tail -> _men
 
 and _menhir_fail : unit -> 'a =
   fun () ->
-    Printf.fprintf Pervasives.stderr "Internal failure -- please contact the parser generator's developers.\n%!";
+    Printf.fprintf stderr "Internal failure -- please contact the parser generator's developers.\n%!";
     assert false
 
 and _menhir_goto_statement : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_statement -> 'ttv_return =
@@ -358,7 +358,7 @@ and _menhir_goto_statement : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_st
         let (_menhir_stack : 'freshtv305 * _menhir_state * 'tv_statement) = Obj.magic _menhir_stack in
         ((let (_menhir_stack, _menhir_s, (x : 'tv_statement)) = _menhir_stack in
         let _v : 'tv_nonempty_list_statement_ = 
-# 195 "/usr/share/menhir/standard.mly"
+# 221 "<standard.mly>"
     ( [ x ] )
 # 364 "parser.ml"
          in
@@ -574,19 +574,16 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv139 * _menhir_state * 'tv_expression)) * _menhir_state * 'tv_expression) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (e1 : 'tv_expression)), _, (e2 : 'tv_expression)) = _menhir_stack in
-            let _10 = () in
-            let _v : 'tv_expression = let o =
-              let _1 = _10 in
-              
+            let _1 = () in
+            let _v : 'tv_expression = let o = 
 # 68 "parser.mly"
                                                                 ( Bmul )
-# 584 "parser.ml"
-              
-            in
+# 582 "parser.ml"
+             in
             
 # 42 "parser.mly"
                                                                     ( Ebinop (o, e1, e2) )
-# 590 "parser.ml"
+# 587 "parser.ml"
              in
             _menhir_goto_expression _menhir_env _menhir_stack _menhir_s _v) : 'freshtv140)
         | _ ->
@@ -627,7 +624,7 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let _v : 'tv_expression = 
 # 43 "parser.mly"
                                                                     ( Einterval (e1, e2))
-# 631 "parser.ml"
+# 628 "parser.ml"
              in
             _menhir_goto_expression _menhir_env _menhir_stack _menhir_s _v) : 'freshtv146)
         | _ ->
@@ -653,19 +650,16 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv151 * _menhir_state * 'tv_expression)) * _menhir_state * 'tv_expression) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (e1 : 'tv_expression)), _, (e2 : 'tv_expression)) = _menhir_stack in
-            let _10 = () in
-            let _v : 'tv_expression = let o =
-              let _1 = _10 in
-              
+            let _1 = () in
+            let _v : 'tv_expression = let o = 
 # 66 "parser.mly"
                                                                 ( Badd )
-# 663 "parser.ml"
-              
-            in
+# 658 "parser.ml"
+             in
             
 # 42 "parser.mly"
                                                                     ( Ebinop (o, e1, e2) )
-# 669 "parser.ml"
+# 663 "parser.ml"
              in
             _menhir_goto_expression _menhir_env _menhir_stack _menhir_s _v) : 'freshtv152)
         | _ ->
@@ -687,19 +681,16 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv157 * _menhir_state * 'tv_expression)) * _menhir_state * 'tv_expression) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (e1 : 'tv_expression)), _, (e2 : 'tv_expression)) = _menhir_stack in
-            let _10 = () in
-            let _v : 'tv_expression = let o =
-              let _1 = _10 in
-              
+            let _1 = () in
+            let _v : 'tv_expression = let o = 
 # 69 "parser.mly"
                                                                 ( Bdiv )
-# 697 "parser.ml"
-              
-            in
+# 689 "parser.ml"
+             in
             
 # 42 "parser.mly"
                                                                     ( Ebinop (o, e1, e2) )
-# 703 "parser.ml"
+# 694 "parser.ml"
              in
             _menhir_goto_expression _menhir_env _menhir_stack _menhir_s _v) : 'freshtv158)
         | _ ->
@@ -733,19 +724,16 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv163 * _menhir_state * 'tv_expression)) * _menhir_state * 'tv_expression) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (e1 : 'tv_expression)), _, (e2 : 'tv_expression)) = _menhir_stack in
-            let _10 = () in
-            let _v : 'tv_expression = let o =
-              let _1 = _10 in
-              
+            let _1 = () in
+            let _v : 'tv_expression = let o = 
 # 72 "parser.mly"
                                                                 ( Bor )
-# 743 "parser.ml"
-              
-            in
+# 732 "parser.ml"
+             in
             
 # 42 "parser.mly"
                                                                     ( Ebinop (o, e1, e2) )
-# 749 "parser.ml"
+# 737 "parser.ml"
              in
             _menhir_goto_expression _menhir_env _menhir_stack _menhir_s _v) : 'freshtv164)
         | _ ->
@@ -771,19 +759,16 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv169 * _menhir_state * 'tv_expression)) * _menhir_state * 'tv_expression) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (e1 : 'tv_expression)), _, (e2 : 'tv_expression)) = _menhir_stack in
-            let _10 = () in
-            let _v : 'tv_expression = let o =
-              let _1 = _10 in
-              
+            let _1 = () in
+            let _v : 'tv_expression = let o = 
 # 67 "parser.mly"
                                                                 ( Bsub )
-# 781 "parser.ml"
-              
-            in
+# 767 "parser.ml"
+             in
             
 # 42 "parser.mly"
                                                                     ( Ebinop (o, e1, e2) )
-# 787 "parser.ml"
+# 772 "parser.ml"
              in
             _menhir_goto_expression _menhir_env _menhir_stack _menhir_s _v) : 'freshtv170)
         | _ ->
@@ -798,7 +783,7 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
         let (_menhir_stack : (('freshtv179 * _menhir_state * 'tv_expression) * (
 # 9 "parser.mly"
        (Ast.binary_operation)
-# 802 "parser.ml"
+# 787 "parser.ml"
         )) * _menhir_state * 'tv_expression) = Obj.magic _menhir_stack in
         ((assert (not _menhir_env._menhir_error);
         let _tok = _menhir_env._menhir_token in
@@ -818,25 +803,22 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let (_menhir_stack : (('freshtv175 * _menhir_state * 'tv_expression) * (
 # 9 "parser.mly"
        (Ast.binary_operation)
-# 822 "parser.ml"
+# 807 "parser.ml"
             )) * _menhir_state * 'tv_expression) = Obj.magic _menhir_stack in
-            ((let (((_menhir_stack, _menhir_s, (e1 : 'tv_expression)), (c0 : (
+            ((let (((_menhir_stack, _menhir_s, (e1 : 'tv_expression)), (c : (
 # 9 "parser.mly"
        (Ast.binary_operation)
-# 827 "parser.ml"
+# 812 "parser.ml"
             ))), _, (e2 : 'tv_expression)) = _menhir_stack in
-            let _v : 'tv_expression = let o =
-              let c = c0 in
-              
+            let _v : 'tv_expression = let o = 
 # 70 "parser.mly"
                                                                 ( c )
-# 834 "parser.ml"
-              
-            in
+# 817 "parser.ml"
+             in
             
 # 42 "parser.mly"
                                                                     ( Ebinop (o, e1, e2) )
-# 840 "parser.ml"
+# 822 "parser.ml"
              in
             _menhir_goto_expression _menhir_env _menhir_stack _menhir_s _v) : 'freshtv176)
         | _ ->
@@ -846,7 +828,7 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let (_menhir_stack : (('freshtv177 * _menhir_state * 'tv_expression) * (
 # 9 "parser.mly"
        (Ast.binary_operation)
-# 850 "parser.ml"
+# 832 "parser.ml"
             )) * _menhir_state * 'tv_expression) = Obj.magic _menhir_stack in
             ((let (_menhir_stack, _menhir_s, _) = _menhir_stack in
             _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) _menhir_s) : 'freshtv178)) : 'freshtv180)
@@ -872,19 +854,16 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : (('freshtv181 * _menhir_state * 'tv_expression)) * _menhir_state * 'tv_expression) = Obj.magic _menhir_stack in
             ((let ((_menhir_stack, _menhir_s, (e1 : 'tv_expression)), _, (e2 : 'tv_expression)) = _menhir_stack in
-            let _10 = () in
-            let _v : 'tv_expression = let o =
-              let _1 = _10 in
-              
+            let _1 = () in
+            let _v : 'tv_expression = let o = 
 # 71 "parser.mly"
                                                                 ( Band )
-# 882 "parser.ml"
-              
-            in
+# 862 "parser.ml"
+             in
             
 # 42 "parser.mly"
                                                                     ( Ebinop (o, e1, e2) )
-# 888 "parser.ml"
+# 867 "parser.ml"
              in
             _menhir_goto_expression _menhir_env _menhir_stack _menhir_s _v) : 'freshtv182)
         | _ ->
@@ -926,7 +905,7 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let _v : 'tv_expression = 
 # 45 "parser.mly"
                                                                     ( e )
-# 930 "parser.ml"
+# 909 "parser.ml"
              in
             _menhir_goto_expression _menhir_env _menhir_stack _menhir_s _v) : 'freshtv188)) : 'freshtv190)
         | TIMES ->
@@ -967,21 +946,21 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             ((let ((((_menhir_stack, _menhir_s), _, (id : 'tv_ident)), _), _, (e : 'tv_expression)) = _menhir_stack in
             let _7 = () in
             let _5 = () in
-            let _10 = () in
+            let _1_inlined1 = () in
             let _3 = () in
             let _1 = () in
             let _v : 'tv_statement = let t =
-              let _1 = _10 in
+              let _1 = _1_inlined1 in
               
 # 62 "parser.mly"
                                                                 ( Tint )
-# 979 "parser.ml"
+# 958 "parser.ml"
               
             in
             
 # 49 "parser.mly"
                                                                                                         ( Sassign (id, t, e) )
-# 985 "parser.ml"
+# 964 "parser.ml"
              in
             _menhir_goto_statement _menhir_env _menhir_stack _menhir_s _v) : 'freshtv196)) : 'freshtv198)
         | TIMES ->
@@ -1028,7 +1007,7 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let _v : 'tv_statement = 
 # 50 "parser.mly"
                                                                                                         ( Sassignarray (id, t, e) )
-# 1032 "parser.ml"
+# 1011 "parser.ml"
              in
             _menhir_goto_statement _menhir_env _menhir_stack _menhir_s _v) : 'freshtv204)) : 'freshtv206)
         | TIMES ->
@@ -1076,23 +1055,23 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
                     let (_menhir_stack : (((((('freshtv211 * _menhir_state) * _menhir_state * 'tv_ident)) * _menhir_state) * _menhir_state * 'tv_expression))) = Obj.magic _menhir_stack in
                     ((let ((((_menhir_stack, _menhir_s), _, (id : 'tv_ident)), _), _, (indices : 'tv_expression)) = _menhir_stack in
                     let _8 = () in
-                    let _10 = () in
+                    let _1_inlined1 = () in
                     let _6 = () in
                     let _4 = () in
                     let _3 = () in
                     let _1 = () in
                     let _v : 'tv_statement = let vt =
-                      let _1 = _10 in
+                      let _1 = _1_inlined1 in
                       
 # 62 "parser.mly"
                                                                 ( Tint )
-# 1090 "parser.ml"
+# 1069 "parser.ml"
                       
                     in
                     
 # 58 "parser.mly"
                                                                                                  ( Stypearray (id, indices, vt) )
-# 1096 "parser.ml"
+# 1075 "parser.ml"
                      in
                     _menhir_goto_statement _menhir_env _menhir_stack _menhir_s _v) : 'freshtv212)) : 'freshtv214)
                 | _ ->
@@ -1155,7 +1134,7 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let _v : 'tv_statement = 
 # 57 "parser.mly"
                                                                                                         ( Stype (id, e) )
-# 1159 "parser.ml"
+# 1138 "parser.ml"
              in
             _menhir_goto_statement _menhir_env _menhir_stack _menhir_s _v) : 'freshtv228)) : 'freshtv230)
         | TIMES ->
@@ -1207,7 +1186,7 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
                 let _v : 'tv_statement = 
 # 53 "parser.mly"
                                                                                                         ( Sprint e )
-# 1211 "parser.ml"
+# 1190 "parser.ml"
                  in
                 _menhir_goto_statement _menhir_env _menhir_stack _menhir_s _v) : 'freshtv236)) : 'freshtv238)
             | _ ->
@@ -1473,7 +1452,7 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let _v : 'tv_statement = 
 # 52 "parser.mly"
                                                                                                     ( Sreassignarray (id, e, v) )
-# 1477 "parser.ml"
+# 1456 "parser.ml"
              in
             _menhir_goto_statement _menhir_env _menhir_stack _menhir_s _v) : 'freshtv286)) : 'freshtv288)
         | TIMES ->
@@ -1518,7 +1497,7 @@ and _menhir_goto_expression : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_e
             let _v : 'tv_statement = 
 # 51 "parser.mly"
                                                                                                         ( Sreassign (id, e) )
-# 1522 "parser.ml"
+# 1501 "parser.ml"
              in
             _menhir_goto_statement _menhir_env _menhir_stack _menhir_s _v) : 'freshtv294)) : 'freshtv296)
         | TIMES ->
@@ -1553,7 +1532,7 @@ and _menhir_run7 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
 and _menhir_run8 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
 # 8 "parser.mly"
        (Ast.constant)
-# 1557 "parser.ml"
+# 1536 "parser.ml"
 ) -> 'ttv_return =
   fun _menhir_env _menhir_stack _menhir_s _v ->
     let _menhir_env = _menhir_discard _menhir_env in
@@ -1563,16 +1542,16 @@ and _menhir_run8 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     let ((c : (
 # 8 "parser.mly"
        (Ast.constant)
-# 1567 "parser.ml"
+# 1546 "parser.ml"
     )) : (
 # 8 "parser.mly"
        (Ast.constant)
-# 1571 "parser.ml"
+# 1550 "parser.ml"
     )) = _v in
     ((let _v : 'tv_expression = 
 # 40 "parser.mly"
                                                                     ( Ecst c )
-# 1576 "parser.ml"
+# 1555 "parser.ml"
      in
     _menhir_goto_expression _menhir_env _menhir_stack _menhir_s _v) : 'freshtv130)
 
@@ -1664,7 +1643,7 @@ and _menhir_errorcase : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return
         let (_menhir_stack : ('freshtv103 * _menhir_state * 'tv_expression) * (
 # 9 "parser.mly"
        (Ast.binary_operation)
-# 1668 "parser.ml"
+# 1647 "parser.ml"
         )) = Obj.magic _menhir_stack in
         ((let ((_menhir_stack, _menhir_s, _), _) = _menhir_stack in
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) _menhir_s) : 'freshtv104)
@@ -1817,7 +1796,7 @@ and _menhir_run54 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
 and _menhir_run2 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
 # 11 "parser.mly"
        (string)
-# 1821 "parser.ml"
+# 1800 "parser.ml"
 ) -> 'ttv_return =
   fun _menhir_env _menhir_stack _menhir_s _v ->
     let _menhir_env = _menhir_discard _menhir_env in
@@ -1827,16 +1806,16 @@ and _menhir_run2 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     let ((id : (
 # 11 "parser.mly"
        (string)
-# 1831 "parser.ml"
+# 1810 "parser.ml"
     )) : (
 # 11 "parser.mly"
        (string)
-# 1835 "parser.ml"
+# 1814 "parser.ml"
     )) = _v in
     ((let _v : 'tv_ident = 
 # 76 "parser.mly"
                                                                 ( id )
-# 1840 "parser.ml"
+# 1819 "parser.ml"
      in
     let (_menhir_env : _menhir_env) = _menhir_env in
     let (_menhir_stack : 'freshtv59) = _menhir_stack in
@@ -1929,7 +1908,7 @@ and _menhir_run2 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
             let _v : 'tv_expression = 
 # 41 "parser.mly"
                                                                     ( Eident id )
-# 1933 "parser.ml"
+# 1912 "parser.ml"
              in
             _menhir_goto_expression _menhir_env _menhir_stack _menhir_s _v) : 'freshtv18)
         | _ ->
@@ -2144,7 +2123,7 @@ and _menhir_discard : _menhir_env -> _menhir_env =
 and program : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (
 # 32 "parser.mly"
       (Ast.program)
-# 2148 "parser.ml"
+# 2127 "parser.ml"
 ) =
   fun lexer lexbuf ->
     let _menhir_env =
@@ -2180,8 +2159,7 @@ and program : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (
         _menhir_env._menhir_error <- true;
         _menhir_errorcase _menhir_env (Obj.magic _menhir_stack) MenhirState0) : 'freshtv2))
 
-# 219 "/usr/share/menhir/standard.mly"
+# 269 "<standard.mly>"
   
 
-
-# 2188 "parser.ml"
+# 2166 "parser.ml"

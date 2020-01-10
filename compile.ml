@@ -35,6 +35,19 @@ let rec compile_expr =
 
     let rec comprec env next = function
 
+      | Ecst (Cint i) -> Printf.printf " %d " i;
+        movq (imm  i) (reg rax) ++
+        pushq rax
+
+      | Ebinop (Bdiv, e1, e2)->
+        comprec env next e1 ++
+        comprec env next e2 ++
+        movq (imm 0) (reg rdx) ++
+        popq rbx ++
+        popq rax ++
+        idivq (reg rbx) ++
+        pushq rax
+
       | Ebinop (o, e1, e2)->
           let op = match o with
             | Badd -> addq
@@ -47,15 +60,22 @@ let rec compile_expr =
           popq rax ++
           op (reg rbx) (reg rax) ++
           pushq rax
-    in
-    comprec StrMap.empty 0
+    
+      in comprec StrMap.empty 0
 
-let compile_stmt = function
+let rec compile_stmt = function
 
   | Sprint e -> 
     compile_expr e ++
     popq rdi ++
     call "print_int"
+
+  | Sblock bl ->
+    block bl
+  
+and block = function
+  | [a] -> compile_stmt a
+  | s :: sl ->  compile_stmt s; (++); block sl
 
 let compile_program p ofile =
   let code = compile_stmt p in

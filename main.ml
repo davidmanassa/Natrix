@@ -8,6 +8,8 @@ open Parser
 let usage = "usage: natrix [options] file.nx"
 
 let parse_only = ref false
+let compiler_only = ref false
+let interpreter_only = ref false
 
 let ofile = ref "compiled.s"
 
@@ -16,6 +18,8 @@ let set_file f s = f := s
 let spec =
   [
     "--parse-only", Arg.Set parse_only, "  stop after parsing";
+    "--compiler-only", Arg.Set compiler_only, " only generate compiler";
+    "--interperter-only", Arg.Set interpreter_only, " only  interpreter";
   ]
 
 let file =
@@ -41,6 +45,8 @@ let () =
     let f = Parser.program Lexer.next_token lb in
     close_in c;
     if !parse_only then exit 0;
+    if !interpreter_only then (Interp.program f; exit 0);
+    if !compiler_only then (Compile.compile_program f !ofile; exit 0);
     Interp.program f;
     Compile.compile_program f !ofile
   with
