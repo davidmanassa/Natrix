@@ -5,7 +5,7 @@
 Tipos são:
 - Tipo int
 - Tipo intervalo
-- Tipo array (Apenas inicializa com certo tamanho e indexing)
+- Tipo array (Apenas inicializa com certo tamanho / indexing)
 
 Variáveis
 - Int
@@ -18,18 +18,17 @@ Variáveis
 
 Interpreter:
 
-        type nome = [inicio .. fim] ;
-        type i_max = [10 .. maxint] ;
-
-        size()
-
-        maxint
-        minint
-
     váriáveis locais:
         let x = 2 in x + 2 ;
 
 
+Compiler: 
+
+    bug fix (allow more prints)
+
+    can do more little things
+
+Report
 
 ## Simple Interpreter and Compiler for Natrix Language
 

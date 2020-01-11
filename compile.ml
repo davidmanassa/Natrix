@@ -35,8 +35,8 @@ let rec compile_expr =
 
     let rec comprec env next = function
 
-      | Ecst (Cint i) -> Printf.printf " %d " i;
-        movq (imm  i) (reg rax) ++
+      | Ecst (Cint i) ->
+        movq (imm  (Int64.to_int i)) (reg rax) ++
         pushq rax
 
       | Ebinop (Bdiv, e1, e2)->

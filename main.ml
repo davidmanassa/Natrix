@@ -19,7 +19,7 @@ let spec =
   [
     "--parse-only", Arg.Set parse_only, "  stop after parsing";
     "--compiler-only", Arg.Set compiler_only, " only generate compiler";
-    "--interperter-only", Arg.Set interpreter_only, " only  interpreter";
+    "--interpreter-only", Arg.Set interpreter_only, " only  interpreter";
   ]
 
 let file =

@@ -1,6 +1,16 @@
 
 print(41+1);
 
+
+print (maxint) ;
+print (maxint + 10) ;
+
+type interval =  [ 2 .. maxint ]  ;
+
+print (interval) ;
+
+print (minint) ;
+
 // Isto é um comentário
 
 if (2<1)
@@ -17,13 +27,15 @@ x := x + 3;
 
 print(2..8);
 
-foreach i in 2 .. 6 do {
-    print(i);
-}
 
 type inter = 1..10 ;
 type arr = array inter of int ;
 var farr : arr filled by 4 ;
+
+
+foreach i in inter do {
+    farr[i] := i;
+}
 
 print (farr) ;
 

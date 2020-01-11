@@ -66,7 +66,7 @@ rule next_tokens = parse
   | ">="                          { [BINOP Bbiggerequal] }
 	| '>'			                      { [BINOP Bbigger] }
   | ';'                           { [SEMICOLON] }
-  | integer as s                  { try [CONSTANT (Cint (int_of_string s))] with _ -> raise (Lexing_error ("constant too large: " ^ s)) }
+  | integer as s                  { try [CONSTANT (Cint (Int64.of_string s))] with _ -> raise (Lexing_error ("constant too large: " ^ s)) }
   | '"'                           { [CONSTANT (Cstring (string lexbuf))] }
   | eof                           { [EOF] }
   | _ as c                        { raise (Lexing_error ("illegal character: " ^ String.make 1 c)) }

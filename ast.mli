@@ -15,7 +15,7 @@ type constant =
   | Cnone
   | Cbool of bool
   | Cstring of string
-  | Cint of int
+  | Cint of int64
 
 type expression =
   | Ecst of constant
@@ -23,6 +23,7 @@ type expression =
   | Ebinop of binary_operation * expression * expression
   | Einterval of expression * expression
   | Earray of ident
+  | Esize of expression
   | Eget of ident * expression
 
 and statement =
