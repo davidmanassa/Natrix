@@ -41,7 +41,9 @@ expression:
     | id = ident                                                    { Eident id }
     | e1 = expression o = binary_operator e2 = expression           { Ebinop (o, e1, e2) }
     | e1 = expression DOT DOT e2 = expression                       { Einterval (e1, e2)}
+    | LBRACKET e1 = expression DOT DOT e2 = expression RBRACKET     { Einterval (e1, e2)}
     | id = ident LBRACKET e = expression RBRACKET                   { Eget (id, e) }
+    | SIZE LPARENT e = expression RPARENT                           { Esize e }
     | LPARENT e = expression RPARENT                                { e }
 ;
 

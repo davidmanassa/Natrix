@@ -1,0 +1,2326 @@
+"compile.ml" 9 105 110 "compile.ml" 9 105 114
+type(
+  (string, unit) Hashtbl.t
+)
+ident(
+  def genv "compile.ml" 11 166 166 "compile.ml" 1 0 -1
+)
+"compile.ml" 9 105 145 "compile.ml" 9 105 159
+type(
+  ?random:bool -> int -> (string, unit) Hashtbl.t
+)
+ident(
+  ext_ref Hashtbl.create
+)
+"compile.ml" 9 105 160 "compile.ml" 9 105 162
+type(
+  int
+)
+"compile.ml" 9 105 145 "compile.ml" 9 105 162
+call(
+  stack
+)
+type(
+  (string, unit) Hashtbl.t
+)
+"compile.ml" 11 166 180 "compile.ml" 11 166 196
+call(
+  stack
+)
+"compile.ml" 15 233 241 "compile.ml" 15 233 251
+type(
+  'a -> 'b -> Ast.expression -> Ast.expression * 'b
+)
+ident(
+  def alloc_expr "compile.ml" 15 233 233 "compile.ml" 1 0 -1
+)
+"compile.ml" 15 233 252 "compile.ml" 15 233 255
+type(
+  'a
+)
+ident(
+  def env "compile.ml" 15 233 256 "compile.ml" 17 288 304
+)
+"compile.ml" 15 233 256 "compile.ml" 15 233 260
+type(
+  'b
+)
+ident(
+  def next "compile.ml" 15 233 263 "compile.ml" 17 288 304
+)
+"compile.ml" 16 273 282 "compile.ml" 16 273 283
+type(
+  Ast.constant
+)
+ident(
+  def i "compile.ml" 17 288 292 "compile.ml" 17 288 304
+)
+"compile.ml" 16 273 277 "compile.ml" 16 273 283
+type(
+  Ast.expression
+)
+"compile.ml" 17 288 297 "compile.ml" 17 288 298
+type(
+  Ast.constant
+)
+ident(
+  int_ref i "compile.ml" 16 273 282 "compile.ml" 16 273 283
+)
+"compile.ml" 17 288 292 "compile.ml" 17 288 298
+type(
+  Ast.expression
+)
+"compile.ml" 17 288 300 "compile.ml" 17 288 304
+type(
+  'b
+)
+ident(
+  int_ref next "compile.ml" 15 233 256 "compile.ml" 15 233 260
+)
+"compile.ml" 17 288 292 "compile.ml" 17 288 304
+type(
+  Ast.expression * 'b
+)
+"compile.ml" 15 233 263 "compile.ml" 17 288 304
+type(
+  Ast.expression -> Ast.expression * 'b
+)
+"compile.ml" 19 308 312 "compile.ml" 19 308 322
+type(
+  Ast.statement -> Ast.statement
+)
+ident(
+  def alloc_stmt "compile.ml" 24 370 370 "compile.ml" 1 0 -1
+)
+"compile.ml" 21 337 348 "compile.ml" 21 337 349
+type(
+  Ast.expression
+)
+ident(
+  def e "compile.ml" 22 354 358 "compile.ml" 22 354 366
+)
+"compile.ml" 21 337 341 "compile.ml" 21 337 349
+type(
+  Ast.statement
+)
+"compile.ml" 22 354 365 "compile.ml" 22 354 366
+type(
+  Ast.expression
+)
+ident(
+  int_ref e "compile.ml" 21 337 348 "compile.ml" 21 337 349
+)
+"compile.ml" 22 354 358 "compile.ml" 22 354 366
+type(
+  Ast.statement
+)
+"compile.ml" 19 308 325 "compile.ml" 22 354 366
+type(
+  Ast.statement -> Ast.statement
+)
+"compile.ml" 24 370 374 "compile.ml" 24 370 379
+type(
+  Ast.statement list -> Ast.statement list
+)
+ident(
+  def alloc "compile.ml" 29 518 518 "compile.ml" 1 0 -1
+)
+"compile.ml" 24 370 382 "compile.ml" 24 370 390
+type(
+  (Ast.statement -> Ast.statement) ->
+  Ast.statement list -> Ast.statement list
+)
+ident(
+  ext_ref List.map
+)
+"compile.ml" 24 370 391 "compile.ml" 24 370 401
+type(
+  Ast.statement -> Ast.statement
+)
+ident(
+  int_ref alloc_stmt "compile.ml" 19 308 312 "compile.ml" 19 308 322
+)
+"compile.ml" 24 370 382 "compile.ml" 24 370 401
+call(
+  stack
+)
+type(
+  Ast.statement list -> Ast.statement list
+)
+"compile.ml" 29 518 522 "compile.ml" 29 518 526
+type(
+  int -> X86_64.text
+)
+ident(
+  def popn "compile.ml" 30 555 555 "compile.ml" 1 0 -1
+)
+"compile.ml" 29 518 527 "compile.ml" 29 518 528
+type(
+  int
+)
+ident(
+  def n "compile.ml" 29 518 531 "compile.ml" 29 518 553
+)
+"compile.ml" 29 518 531 "compile.ml" 29 518 535
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  ext_ref X86_64.addq
+)
+"compile.ml" 29 518 537 "compile.ml" 29 518 540
+type(
+  int -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.imm
+)
+"compile.ml" 29 518 541 "compile.ml" 29 518 542
+type(
+  int
+)
+ident(
+  int_ref n "compile.ml" 29 518 527 "compile.ml" 29 518 528
+)
+"compile.ml" 29 518 536 "compile.ml" 29 518 543
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 29 518 545 "compile.ml" 29 518 548
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 29 518 549 "compile.ml" 29 518 552
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rsp
+)
+"compile.ml" 29 518 544 "compile.ml" 29 518 553
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 29 518 531 "compile.ml" 29 518 553
+call(
+  tail
+)
+type(
+  X86_64.text
+)
+"compile.ml" 30 555 559 "compile.ml" 30 555 564
+type(
+  int -> X86_64.text
+)
+ident(
+  def pushn "compile.ml" 32 595 595 "compile.ml" 1 0 -1
+)
+"compile.ml" 30 555 565 "compile.ml" 30 555 566
+type(
+  int
+)
+ident(
+  def n "compile.ml" 30 555 569 "compile.ml" 30 555 591
+)
+"compile.ml" 30 555 569 "compile.ml" 30 555 573
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  ext_ref X86_64.subq
+)
+"compile.ml" 30 555 575 "compile.ml" 30 555 578
+type(
+  int -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.imm
+)
+"compile.ml" 30 555 579 "compile.ml" 30 555 580
+type(
+  int
+)
+ident(
+  int_ref n "compile.ml" 30 555 565 "compile.ml" 30 555 566
+)
+"compile.ml" 30 555 574 "compile.ml" 30 555 581
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 30 555 583 "compile.ml" 30 555 586
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 30 555 587 "compile.ml" 30 555 590
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rsp
+)
+"compile.ml" 30 555 582 "compile.ml" 30 555 591
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 30 555 569 "compile.ml" 30 555 591
+call(
+  tail
+)
+type(
+  X86_64.text
+)
+"compile.ml" 32 595 611 "compile.ml" 32 595 627
+call(
+  stack
+)
+"compile.ml" 34 631 639 "compile.ml" 34 631 651
+type(
+  Ast.expression -> X86_64.text
+)
+ident(
+  def compile_expr "compile.ml" 34 631 631 "compile.ml" 1 0 -1
+)
+"compile.ml" 36 657 669 "compile.ml" 36 657 676
+type(
+  'a -> 'b -> Ast.expression -> X86_64.text
+)
+ident(
+  def comprec "compile.ml" 36 657 661 "compile.ml" 64 1370 1401
+)
+"compile.ml" 36 657 677 "compile.ml" 36 657 680
+type(
+  'a
+)
+ident(
+  def env "compile.ml" 36 657 681 "compile.ml" 62 1343 1362
+)
+"compile.ml" 36 657 681 "compile.ml" 36 657 685
+type(
+  'b
+)
+ident(
+  def next "compile.ml" 36 657 688 "compile.ml" 62 1343 1362
+)
+"compile.ml" 38 700 719 "compile.ml" 38 700 720
+type(
+  int
+)
+ident(
+  def i "compile.ml" 38 700 725 "compile.ml" 40 786 803
+)
+"compile.ml" 38 700 713 "compile.ml" 38 700 721
+type(
+  Ast.constant
+)
+"compile.ml" 38 700 708 "compile.ml" 38 700 721
+type(
+  Ast.expression
+)
+"compile.ml" 38 700 725 "compile.ml" 38 700 738
+type(
+  (int -> unit, out_channel, unit) format -> int -> unit
+)
+ident(
+  ext_ref Printf.printf
+)
+"compile.ml" 38 700 739 "compile.ml" 38 700 745
+type(
+  (int -> unit, out_channel, unit) format
+)
+"compile.ml" 38 700 746 "compile.ml" 38 700 747
+type(
+  int
+)
+ident(
+  int_ref i "compile.ml" 38 700 719 "compile.ml" 38 700 720
+)
+"compile.ml" 38 700 725 "compile.ml" 38 700 747
+call(
+  stack
+)
+type(
+  unit
+)
+"compile.ml" 39 750 758 "compile.ml" 39 750 762
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  ext_ref X86_64.movq
+)
+"compile.ml" 39 750 764 "compile.ml" 39 750 767
+type(
+  int -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.imm
+)
+"compile.ml" 39 750 769 "compile.ml" 39 750 770
+type(
+  int
+)
+ident(
+  int_ref i "compile.ml" 38 700 719 "compile.ml" 38 700 720
+)
+"compile.ml" 39 750 763 "compile.ml" 39 750 771
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 39 750 773 "compile.ml" 39 750 776
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 39 750 777 "compile.ml" 39 750 780
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rax
+)
+"compile.ml" 39 750 772 "compile.ml" 39 750 781
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 39 750 758 "compile.ml" 39 750 781
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 39 750 782 "compile.ml" 39 750 784
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 40 786 794 "compile.ml" 40 786 799
+type(
+  X86_64.register -> X86_64.text
+)
+ident(
+  ext_ref X86_64.pushq
+)
+"compile.ml" 40 786 800 "compile.ml" 40 786 803
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rax
+)
+"compile.ml" 40 786 794 "compile.ml" 40 786 803
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 39 750 758 "compile.ml" 40 786 803
+call(
+  tail
+)
+type(
+  X86_64.text
+)
+"compile.ml" 38 700 725 "compile.ml" 40 786 803
+type(
+  X86_64.text
+)
+"compile.ml" 42 807 823 "compile.ml" 42 807 827
+type(
+  Ast.binary_operation
+)
+"compile.ml" 42 807 829 "compile.ml" 42 807 831
+type(
+  Ast.expression
+)
+ident(
+  def e1 "compile.ml" 43 840 848 "compile.ml" 49 1009 1026
+)
+"compile.ml" 42 807 833 "compile.ml" 42 807 835
+type(
+  Ast.expression
+)
+ident(
+  def e2 "compile.ml" 43 840 848 "compile.ml" 49 1009 1026
+)
+"compile.ml" 42 807 815 "compile.ml" 42 807 836
+type(
+  Ast.expression
+)
+"compile.ml" 43 840 848 "compile.ml" 43 840 855
+type(
+  'a -> 'b -> Ast.expression -> X86_64.text
+)
+ident(
+  int_ref comprec "compile.ml" 36 657 669 "compile.ml" 36 657 676
+)
+"compile.ml" 43 840 856 "compile.ml" 43 840 859
+type(
+  'a
+)
+ident(
+  int_ref env "compile.ml" 36 657 677 "compile.ml" 36 657 680
+)
+"compile.ml" 43 840 860 "compile.ml" 43 840 864
+type(
+  'b
+)
+ident(
+  int_ref next "compile.ml" 36 657 681 "compile.ml" 36 657 685
+)
+"compile.ml" 43 840 865 "compile.ml" 43 840 867
+type(
+  Ast.expression
+)
+ident(
+  int_ref e1 "compile.ml" 42 807 829 "compile.ml" 42 807 831
+)
+"compile.ml" 43 840 848 "compile.ml" 43 840 867
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 43 840 868 "compile.ml" 43 840 870
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 44 872 880 "compile.ml" 44 872 887
+type(
+  'a -> 'b -> Ast.expression -> X86_64.text
+)
+ident(
+  int_ref comprec "compile.ml" 36 657 669 "compile.ml" 36 657 676
+)
+"compile.ml" 44 872 888 "compile.ml" 44 872 891
+type(
+  'a
+)
+ident(
+  int_ref env "compile.ml" 36 657 677 "compile.ml" 36 657 680
+)
+"compile.ml" 44 872 892 "compile.ml" 44 872 896
+type(
+  'b
+)
+ident(
+  int_ref next "compile.ml" 36 657 681 "compile.ml" 36 657 685
+)
+"compile.ml" 44 872 897 "compile.ml" 44 872 899
+type(
+  Ast.expression
+)
+ident(
+  int_ref e2 "compile.ml" 42 807 833 "compile.ml" 42 807 835
+)
+"compile.ml" 44 872 880 "compile.ml" 44 872 899
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 43 840 848 "compile.ml" 44 872 899
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 44 872 900 "compile.ml" 44 872 902
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 45 904 912 "compile.ml" 45 904 916
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  ext_ref X86_64.movq
+)
+"compile.ml" 45 904 918 "compile.ml" 45 904 921
+type(
+  int -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.imm
+)
+"compile.ml" 45 904 922 "compile.ml" 45 904 923
+type(
+  int
+)
+"compile.ml" 45 904 917 "compile.ml" 45 904 924
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 45 904 926 "compile.ml" 45 904 929
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 45 904 930 "compile.ml" 45 904 933
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rdx
+)
+"compile.ml" 45 904 925 "compile.ml" 45 904 934
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 45 904 912 "compile.ml" 45 904 934
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 43 840 848 "compile.ml" 45 904 934
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 45 904 935 "compile.ml" 45 904 937
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 46 939 947 "compile.ml" 46 939 951
+type(
+  X86_64.register -> X86_64.text
+)
+ident(
+  ext_ref X86_64.popq
+)
+"compile.ml" 46 939 952 "compile.ml" 46 939 955
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rbx
+)
+"compile.ml" 46 939 947 "compile.ml" 46 939 955
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 43 840 848 "compile.ml" 46 939 955
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 46 939 956 "compile.ml" 46 939 958
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 47 960 968 "compile.ml" 47 960 972
+type(
+  X86_64.register -> X86_64.text
+)
+ident(
+  ext_ref X86_64.popq
+)
+"compile.ml" 47 960 973 "compile.ml" 47 960 976
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rax
+)
+"compile.ml" 47 960 968 "compile.ml" 47 960 976
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 43 840 848 "compile.ml" 47 960 976
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 47 960 977 "compile.ml" 47 960 979
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 48 981 989 "compile.ml" 48 981 994
+type(
+  X86_64.operand -> X86_64.text
+)
+ident(
+  ext_ref X86_64.idivq
+)
+"compile.ml" 48 981 996 "compile.ml" 48 981 999
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 48 981 1000 "compile.ml" 48 981 1003
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rbx
+)
+"compile.ml" 48 981 995 "compile.ml" 48 981 1004
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 48 981 989 "compile.ml" 48 981 1004
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 43 840 848 "compile.ml" 48 981 1004
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 48 981 1005 "compile.ml" 48 981 1007
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 49 1009 1017 "compile.ml" 49 1009 1022
+type(
+  X86_64.register -> X86_64.text
+)
+ident(
+  ext_ref X86_64.pushq
+)
+"compile.ml" 49 1009 1023 "compile.ml" 49 1009 1026
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rax
+)
+"compile.ml" 49 1009 1017 "compile.ml" 49 1009 1026
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 43 840 848 "compile.ml" 49 1009 1026
+call(
+  tail
+)
+type(
+  X86_64.text
+)
+"compile.ml" 51 1030 1046 "compile.ml" 51 1030 1047
+type(
+  Ast.binary_operation
+)
+ident(
+  def o "compile.ml" 52 1060 1070 "compile.ml" 62 1343 1362
+)
+"compile.ml" 51 1030 1049 "compile.ml" 51 1030 1051
+type(
+  Ast.expression
+)
+ident(
+  def e1 "compile.ml" 52 1060 1070 "compile.ml" 62 1343 1362
+)
+"compile.ml" 51 1030 1053 "compile.ml" 51 1030 1055
+type(
+  Ast.expression
+)
+ident(
+  def e2 "compile.ml" 52 1060 1070 "compile.ml" 62 1343 1362
+)
+"compile.ml" 51 1030 1038 "compile.ml" 51 1030 1056
+type(
+  Ast.expression
+)
+"compile.ml" 52 1060 1074 "compile.ml" 52 1060 1076
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  def op "compile.ml" 57 1192 1202 "compile.ml" 62 1343 1362
+)
+"compile.ml" 52 1060 1085 "compile.ml" 52 1060 1086
+type(
+  Ast.binary_operation
+)
+ident(
+  int_ref o "compile.ml" 51 1030 1046 "compile.ml" 51 1030 1047
+)
+"compile.ml" 53 1093 1107 "compile.ml" 53 1093 1111
+type(
+  Ast.binary_operation
+)
+"compile.ml" 53 1093 1115 "compile.ml" 53 1093 1119
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  ext_ref X86_64.addq
+)
+"compile.ml" 54 1121 1135 "compile.ml" 54 1121 1139
+type(
+  Ast.binary_operation
+)
+"compile.ml" 54 1121 1143 "compile.ml" 54 1121 1147
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  ext_ref X86_64.subq
+)
+"compile.ml" 55 1149 1163 "compile.ml" 55 1149 1167
+type(
+  Ast.binary_operation
+)
+"compile.ml" 55 1149 1171 "compile.ml" 55 1149 1176
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  ext_ref X86_64.imulq
+)
+"compile.ml" 52 1060 1079 "compile.ml" 55 1149 1176
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+"compile.ml" 57 1192 1202 "compile.ml" 57 1192 1209
+type(
+  'a -> 'b -> Ast.expression -> X86_64.text
+)
+ident(
+  int_ref comprec "compile.ml" 36 657 669 "compile.ml" 36 657 676
+)
+"compile.ml" 57 1192 1210 "compile.ml" 57 1192 1213
+type(
+  'a
+)
+ident(
+  int_ref env "compile.ml" 36 657 677 "compile.ml" 36 657 680
+)
+"compile.ml" 57 1192 1214 "compile.ml" 57 1192 1218
+type(
+  'b
+)
+ident(
+  int_ref next "compile.ml" 36 657 681 "compile.ml" 36 657 685
+)
+"compile.ml" 57 1192 1219 "compile.ml" 57 1192 1221
+type(
+  Ast.expression
+)
+ident(
+  int_ref e1 "compile.ml" 51 1030 1049 "compile.ml" 51 1030 1051
+)
+"compile.ml" 57 1192 1202 "compile.ml" 57 1192 1221
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 57 1192 1222 "compile.ml" 57 1192 1224
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 58 1226 1236 "compile.ml" 58 1226 1243
+type(
+  'a -> 'b -> Ast.expression -> X86_64.text
+)
+ident(
+  int_ref comprec "compile.ml" 36 657 669 "compile.ml" 36 657 676
+)
+"compile.ml" 58 1226 1244 "compile.ml" 58 1226 1247
+type(
+  'a
+)
+ident(
+  int_ref env "compile.ml" 36 657 677 "compile.ml" 36 657 680
+)
+"compile.ml" 58 1226 1248 "compile.ml" 58 1226 1252
+type(
+  'b
+)
+ident(
+  int_ref next "compile.ml" 36 657 681 "compile.ml" 36 657 685
+)
+"compile.ml" 58 1226 1253 "compile.ml" 58 1226 1255
+type(
+  Ast.expression
+)
+ident(
+  int_ref e2 "compile.ml" 51 1030 1053 "compile.ml" 51 1030 1055
+)
+"compile.ml" 58 1226 1236 "compile.ml" 58 1226 1255
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 57 1192 1202 "compile.ml" 58 1226 1255
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 58 1226 1256 "compile.ml" 58 1226 1258
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 59 1260 1270 "compile.ml" 59 1260 1274
+type(
+  X86_64.register -> X86_64.text
+)
+ident(
+  ext_ref X86_64.popq
+)
+"compile.ml" 59 1260 1275 "compile.ml" 59 1260 1278
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rbx
+)
+"compile.ml" 59 1260 1270 "compile.ml" 59 1260 1278
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 57 1192 1202 "compile.ml" 59 1260 1278
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 59 1260 1279 "compile.ml" 59 1260 1281
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 60 1283 1293 "compile.ml" 60 1283 1297
+type(
+  X86_64.register -> X86_64.text
+)
+ident(
+  ext_ref X86_64.popq
+)
+"compile.ml" 60 1283 1298 "compile.ml" 60 1283 1301
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rax
+)
+"compile.ml" 60 1283 1293 "compile.ml" 60 1283 1301
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 57 1192 1202 "compile.ml" 60 1283 1301
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 60 1283 1302 "compile.ml" 60 1283 1304
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 61 1306 1316 "compile.ml" 61 1306 1318
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  int_ref op "compile.ml" 52 1060 1074 "compile.ml" 52 1060 1076
+)
+"compile.ml" 61 1306 1320 "compile.ml" 61 1306 1323
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 61 1306 1324 "compile.ml" 61 1306 1327
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rbx
+)
+"compile.ml" 61 1306 1319 "compile.ml" 61 1306 1328
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 61 1306 1330 "compile.ml" 61 1306 1333
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 61 1306 1334 "compile.ml" 61 1306 1337
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rax
+)
+"compile.ml" 61 1306 1329 "compile.ml" 61 1306 1338
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 61 1306 1316 "compile.ml" 61 1306 1338
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 57 1192 1202 "compile.ml" 61 1306 1338
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 61 1306 1339 "compile.ml" 61 1306 1341
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 62 1343 1353 "compile.ml" 62 1343 1358
+type(
+  X86_64.register -> X86_64.text
+)
+ident(
+  ext_ref X86_64.pushq
+)
+"compile.ml" 62 1343 1359 "compile.ml" 62 1343 1362
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rax
+)
+"compile.ml" 62 1343 1353 "compile.ml" 62 1343 1362
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 57 1192 1202 "compile.ml" 62 1343 1362
+call(
+  tail
+)
+type(
+  X86_64.text
+)
+"compile.ml" 52 1060 1070 "compile.ml" 62 1343 1362
+type(
+  X86_64.text
+)
+"compile.ml" 36 657 688 "compile.ml" 62 1343 1362
+type(
+  Ast.expression -> X86_64.text
+)
+"compile.ml" 64 1370 1379 "compile.ml" 64 1370 1386
+type(
+  '_c StrMap.t -> int -> Ast.expression -> X86_64.text
+)
+ident(
+  int_ref comprec "compile.ml" 36 657 669 "compile.ml" 36 657 676
+)
+"compile.ml" 64 1370 1387 "compile.ml" 64 1370 1399
+type(
+  '_c StrMap.t
+)
+ident(
+  ext_ref StrMap.empty
+)
+"compile.ml" 64 1370 1400 "compile.ml" 64 1370 1401
+type(
+  int
+)
+"compile.ml" 64 1370 1379 "compile.ml" 64 1370 1401
+call(
+  stack
+)
+type(
+  Ast.expression -> X86_64.text
+)
+"compile.ml" 36 657 661 "compile.ml" 64 1370 1401
+type(
+  Ast.expression -> X86_64.text
+)
+"compile.ml" 66 1405 1413 "compile.ml" 66 1405 1425
+type(
+  Ast.statement -> X86_64.text
+)
+ident(
+  def compile_stmt "compile.ml" 66 1405 1405 "compile.ml" 1 0 -1
+)
+"compile.ml" 68 1440 1451 "compile.ml" 68 1440 1452
+type(
+  Ast.expression
+)
+ident(
+  def e "compile.ml" 69 1458 1462 "compile.ml" 71 1498 1518
+)
+"compile.ml" 68 1440 1444 "compile.ml" 68 1440 1452
+type(
+  Ast.statement
+)
+"compile.ml" 69 1458 1462 "compile.ml" 69 1458 1474
+type(
+  Ast.expression -> X86_64.text
+)
+ident(
+  int_ref compile_expr "compile.ml" 34 631 639 "compile.ml" 34 631 651
+)
+"compile.ml" 69 1458 1475 "compile.ml" 69 1458 1476
+type(
+  Ast.expression
+)
+ident(
+  int_ref e "compile.ml" 68 1440 1451 "compile.ml" 68 1440 1452
+)
+"compile.ml" 69 1458 1462 "compile.ml" 69 1458 1476
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 69 1458 1477 "compile.ml" 69 1458 1479
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 70 1481 1485 "compile.ml" 70 1481 1489
+type(
+  X86_64.register -> X86_64.text
+)
+ident(
+  ext_ref X86_64.popq
+)
+"compile.ml" 70 1481 1490 "compile.ml" 70 1481 1493
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rdi
+)
+"compile.ml" 70 1481 1485 "compile.ml" 70 1481 1493
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 69 1458 1462 "compile.ml" 70 1481 1493
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 70 1481 1494 "compile.ml" 70 1481 1496
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 71 1498 1502 "compile.ml" 71 1498 1506
+type(
+  X86_64.label -> X86_64.text
+)
+ident(
+  ext_ref X86_64.call
+)
+"compile.ml" 71 1498 1507 "compile.ml" 71 1498 1518
+type(
+  X86_64.label
+)
+"compile.ml" 71 1498 1502 "compile.ml" 71 1498 1518
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 69 1458 1462 "compile.ml" 71 1498 1518
+call(
+  tail
+)
+type(
+  X86_64.text
+)
+"compile.ml" 73 1522 1533 "compile.ml" 73 1522 1535
+type(
+  Ast.statement list
+)
+ident(
+  def bl "compile.ml" 74 1540 1544 "compile.ml" 74 1540 1552
+)
+"compile.ml" 73 1522 1526 "compile.ml" 73 1522 1535
+type(
+  Ast.statement
+)
+"compile.ml" 74 1540 1544 "compile.ml" 74 1540 1549
+type(
+  Ast.statement list -> X86_64.text
+)
+ident(
+  int_ref block "compile.ml" 76 1558 1562 "compile.ml" 76 1558 1567
+)
+"compile.ml" 74 1540 1550 "compile.ml" 74 1540 1552
+type(
+  Ast.statement list
+)
+ident(
+  int_ref bl "compile.ml" 73 1522 1533 "compile.ml" 73 1522 1535
+)
+"compile.ml" 74 1540 1544 "compile.ml" 74 1540 1552
+call(
+  tail
+)
+type(
+  X86_64.text
+)
+"compile.ml" 66 1405 1428 "compile.ml" 74 1540 1552
+type(
+  Ast.statement -> X86_64.text
+)
+"compile.ml" 76 1558 1562 "compile.ml" 76 1558 1567
+type(
+  Ast.statement list -> X86_64.text
+)
+ident(
+  def block "compile.ml" 66 1405 1405 "compile.ml" 1 0 -1
+)
+"compile.ml" 77 1580 1585 "compile.ml" 77 1580 1586
+type(
+  Ast.statement
+)
+ident(
+  def a "compile.ml" 77 1580 1591 "compile.ml" 77 1580 1605
+)
+"compile.ml" 77 1580 1584 "compile.ml" 77 1580 1587
+type(
+  Ast.statement list
+)
+"compile.ml" 77 1580 1591 "compile.ml" 77 1580 1603
+type(
+  Ast.statement -> X86_64.text
+)
+ident(
+  int_ref compile_stmt "compile.ml" 66 1405 1413 "compile.ml" 66 1405 1425
+)
+"compile.ml" 77 1580 1604 "compile.ml" 77 1580 1605
+type(
+  Ast.statement
+)
+ident(
+  int_ref a "compile.ml" 77 1580 1585 "compile.ml" 77 1580 1586
+)
+"compile.ml" 77 1580 1591 "compile.ml" 77 1580 1605
+call(
+  tail
+)
+type(
+  X86_64.text
+)
+"compile.ml" 78 1607 1611 "compile.ml" 78 1607 1612
+type(
+  Ast.statement
+)
+ident(
+  def s "compile.ml" 78 1607 1623 "compile.ml" 78 1607 1653
+)
+"compile.ml" 78 1607 1616 "compile.ml" 78 1607 1618
+type(
+  Ast.statement list
+)
+ident(
+  def sl "compile.ml" 78 1607 1623 "compile.ml" 78 1607 1653
+)
+"compile.ml" 78 1607 1611 "compile.ml" 78 1607 1618
+type(
+  Ast.statement list
+)
+"compile.ml" 78 1607 1623 "compile.ml" 78 1607 1635
+type(
+  Ast.statement -> X86_64.text
+)
+ident(
+  int_ref compile_stmt "compile.ml" 66 1405 1413 "compile.ml" 66 1405 1425
+)
+"compile.ml" 78 1607 1636 "compile.ml" 78 1607 1637
+type(
+  Ast.statement
+)
+ident(
+  int_ref s "compile.ml" 78 1607 1611 "compile.ml" 78 1607 1612
+)
+"compile.ml" 78 1607 1623 "compile.ml" 78 1607 1637
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 78 1607 1639 "compile.ml" 78 1607 1643
+type(
+  (_[< `data | `text ] as 'a) X86_64.asm -> 'a X86_64.asm -> 'a X86_64.asm
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 78 1607 1645 "compile.ml" 78 1607 1650
+type(
+  Ast.statement list -> X86_64.text
+)
+ident(
+  int_ref block "compile.ml" 76 1558 1562 "compile.ml" 76 1558 1567
+)
+"compile.ml" 78 1607 1651 "compile.ml" 78 1607 1653
+type(
+  Ast.statement list
+)
+ident(
+  int_ref sl "compile.ml" 78 1607 1616 "compile.ml" 78 1607 1618
+)
+"compile.ml" 78 1607 1645 "compile.ml" 78 1607 1653
+call(
+  tail
+)
+type(
+  X86_64.text
+)
+"compile.ml" 78 1607 1639 "compile.ml" 78 1607 1653
+type(
+  X86_64.text
+)
+"compile.ml" 78 1607 1623 "compile.ml" 78 1607 1653
+type(
+  X86_64.text
+)
+"compile.ml" 76 1558 1570 "compile.ml" 78 1607 1653
+type(
+  Ast.statement list -> X86_64.text
+)
+"compile.ml" 80 1657 1661 "compile.ml" 80 1657 1676
+type(
+  Ast.statement -> string -> unit
+)
+ident(
+  def compile_program "compile.ml" 105 2377 2390 "compile.ml" 1 0 -1
+)
+"compile.ml" 80 1657 1677 "compile.ml" 80 1657 1678
+type(
+  Ast.statement
+)
+ident(
+  def p "compile.ml" 80 1657 1679 "compile.ml" 105 2377 2390
+)
+"compile.ml" 80 1657 1679 "compile.ml" 80 1657 1684
+type(
+  string
+)
+ident(
+  def ofile "compile.ml" 81 1688 1690 "compile.ml" 105 2377 2390
+)
+"compile.ml" 81 1688 1694 "compile.ml" 81 1688 1698
+type(
+  X86_64.text
+)
+ident(
+  def code "compile.ml" 82 1720 1722 "compile.ml" 105 2377 2390
+)
+"compile.ml" 81 1688 1701 "compile.ml" 81 1688 1713
+type(
+  Ast.statement -> X86_64.text
+)
+ident(
+  int_ref compile_stmt "compile.ml" 66 1405 1413 "compile.ml" 66 1405 1425
+)
+"compile.ml" 81 1688 1714 "compile.ml" 81 1688 1715
+type(
+  Ast.statement
+)
+ident(
+  int_ref p "compile.ml" 80 1657 1677 "compile.ml" 80 1657 1678
+)
+"compile.ml" 81 1688 1701 "compile.ml" 81 1688 1715
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 82 1720 1726 "compile.ml" 82 1720 1730
+type(
+  X86_64.text
+)
+ident(
+  def code "compile.ml" 83 1751 1753 "compile.ml" 105 2377 2390
+)
+"compile.ml" 82 1720 1733 "compile.ml" 82 1720 1737
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 82 1720 1738 "compile.ml" 82 1720 1742
+type(
+  X86_64.text
+)
+ident(
+  int_ref code "compile.ml" 81 1688 1694 "compile.ml" 81 1688 1698
+)
+"compile.ml" 82 1720 1743 "compile.ml" 82 1720 1746
+type(
+  X86_64.text
+)
+ident(
+  ext_ref X86_64.nop
+)
+"compile.ml" 82 1720 1733 "compile.ml" 82 1720 1746
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 83 1751 1757 "compile.ml" 83 1751 1758
+type(
+  X86_64.program
+)
+ident(
+  def p "compile.ml" 101 2253 2255 "compile.ml" 105 2377 2390
+)
+"compile.ml" 85 1776 1784 "compile.ml" 85 1776 1790
+type(
+  X86_64.label -> X86_64.text
+)
+ident(
+  ext_ref X86_64.glabel
+)
+"compile.ml" 85 1776 1791 "compile.ml" 85 1776 1797
+type(
+  X86_64.label
+)
+"compile.ml" 85 1776 1784 "compile.ml" 85 1776 1797
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 85 1776 1798 "compile.ml" 85 1776 1800
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 86 1802 1810 "compile.ml" 86 1802 1814
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  ext_ref X86_64.movq
+)
+"compile.ml" 86 1802 1816 "compile.ml" 86 1802 1819
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 86 1802 1820 "compile.ml" 86 1802 1823
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rsp
+)
+"compile.ml" 86 1802 1815 "compile.ml" 86 1802 1824
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 86 1802 1826 "compile.ml" 86 1802 1829
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 86 1802 1830 "compile.ml" 86 1802 1833
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rbp
+)
+"compile.ml" 86 1802 1825 "compile.ml" 86 1802 1834
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 86 1802 1810 "compile.ml" 86 1802 1834
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 85 1776 1784 "compile.ml" 86 1802 1834
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 86 1802 1835 "compile.ml" 86 1802 1837
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 87 1839 1847 "compile.ml" 87 1839 1851
+type(
+  X86_64.text
+)
+ident(
+  int_ref code "compile.ml" 82 1720 1726 "compile.ml" 82 1720 1730
+)
+"compile.ml" 85 1776 1784 "compile.ml" 87 1839 1851
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 87 1839 1852 "compile.ml" 87 1839 1854
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 88 1856 1864 "compile.ml" 88 1856 1868
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  ext_ref X86_64.movq
+)
+"compile.ml" 88 1856 1870 "compile.ml" 88 1856 1873
+type(
+  int -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.imm
+)
+"compile.ml" 88 1856 1874 "compile.ml" 88 1856 1875
+type(
+  int
+)
+"compile.ml" 88 1856 1869 "compile.ml" 88 1856 1876
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 88 1856 1878 "compile.ml" 88 1856 1881
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 88 1856 1882 "compile.ml" 88 1856 1885
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rax
+)
+"compile.ml" 88 1856 1877 "compile.ml" 88 1856 1886
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 88 1856 1864 "compile.ml" 88 1856 1886
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 85 1776 1784 "compile.ml" 88 1856 1886
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 88 1856 1887 "compile.ml" 88 1856 1889
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 89 1902 1910 "compile.ml" 89 1902 1913
+type(
+  X86_64.text
+)
+ident(
+  ext_ref X86_64.ret
+)
+"compile.ml" 85 1776 1784 "compile.ml" 89 1902 1913
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 89 1902 1914 "compile.ml" 89 1902 1916
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 90 1918 1926 "compile.ml" 90 1918 1931
+type(
+  X86_64.label -> X86_64.text
+)
+ident(
+  ext_ref X86_64.label
+)
+"compile.ml" 90 1918 1932 "compile.ml" 90 1918 1943
+type(
+  X86_64.label
+)
+"compile.ml" 90 1918 1926 "compile.ml" 90 1918 1943
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 85 1776 1784 "compile.ml" 90 1918 1943
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 90 1918 1944 "compile.ml" 90 1918 1946
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 91 1948 1956 "compile.ml" 91 1948 1960
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  ext_ref X86_64.movq
+)
+"compile.ml" 91 1948 1962 "compile.ml" 91 1948 1965
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 91 1948 1966 "compile.ml" 91 1948 1969
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rdi
+)
+"compile.ml" 91 1948 1961 "compile.ml" 91 1948 1970
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 91 1948 1972 "compile.ml" 91 1948 1975
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 91 1948 1976 "compile.ml" 91 1948 1979
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rsi
+)
+"compile.ml" 91 1948 1971 "compile.ml" 91 1948 1980
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 91 1948 1956 "compile.ml" 91 1948 1980
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 85 1776 1784 "compile.ml" 91 1948 1980
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 91 1948 1981 "compile.ml" 91 1948 1983
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 92 1985 1993 "compile.ml" 92 1985 1997
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  ext_ref X86_64.movq
+)
+"compile.ml" 92 1985 1999 "compile.ml" 92 1985 2003
+type(
+  X86_64.label -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.ilab
+)
+"compile.ml" 92 1985 2004 "compile.ml" 92 1985 2017
+type(
+  X86_64.label
+)
+"compile.ml" 92 1985 1998 "compile.ml" 92 1985 2018
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 92 1985 2020 "compile.ml" 92 1985 2023
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 92 1985 2024 "compile.ml" 92 1985 2027
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rdi
+)
+"compile.ml" 92 1985 2019 "compile.ml" 92 1985 2028
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 92 1985 1993 "compile.ml" 92 1985 2028
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 85 1776 1784 "compile.ml" 92 1985 2028
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 92 1985 2029 "compile.ml" 92 1985 2031
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 93 2033 2041 "compile.ml" 93 2033 2045
+type(
+  X86_64.operand -> X86_64.operand -> X86_64.text
+)
+ident(
+  ext_ref X86_64.movq
+)
+"compile.ml" 93 2033 2047 "compile.ml" 93 2033 2050
+type(
+  int -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.imm
+)
+"compile.ml" 93 2033 2051 "compile.ml" 93 2033 2052
+type(
+  int
+)
+"compile.ml" 93 2033 2046 "compile.ml" 93 2033 2053
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 93 2033 2055 "compile.ml" 93 2033 2058
+type(
+  X86_64.register -> X86_64.operand
+)
+ident(
+  ext_ref X86_64.reg
+)
+"compile.ml" 93 2033 2059 "compile.ml" 93 2033 2062
+type(
+  X86_64.register
+)
+ident(
+  ext_ref X86_64.rax
+)
+"compile.ml" 93 2033 2054 "compile.ml" 93 2033 2063
+call(
+  stack
+)
+type(
+  X86_64.operand
+)
+"compile.ml" 93 2033 2041 "compile.ml" 93 2033 2063
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 85 1776 1784 "compile.ml" 93 2033 2063
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 93 2033 2064 "compile.ml" 93 2033 2066
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 94 2068 2076 "compile.ml" 94 2068 2080
+type(
+  X86_64.label -> X86_64.text
+)
+ident(
+  ext_ref X86_64.call
+)
+"compile.ml" 94 2068 2081 "compile.ml" 94 2068 2089
+type(
+  X86_64.label
+)
+"compile.ml" 94 2068 2076 "compile.ml" 94 2068 2089
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 85 1776 1784 "compile.ml" 94 2068 2089
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 94 2068 2090 "compile.ml" 94 2068 2092
+type(
+  X86_64.text -> X86_64.text -> X86_64.text
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 95 2094 2102 "compile.ml" 95 2094 2105
+type(
+  X86_64.text
+)
+ident(
+  ext_ref X86_64.ret
+)
+"compile.ml" 85 1776 1784 "compile.ml" 95 2094 2105
+call(
+  stack
+)
+type(
+  X86_64.text
+)
+"compile.ml" 97 2122 2130 "compile.ml" 97 2122 2142
+type(
+  (X86_64.label -> unit -> X86_64.data -> X86_64.data) ->
+  (X86_64.label, unit) Hashtbl.t -> X86_64.data -> X86_64.data
+)
+ident(
+  ext_ref Hashtbl.fold
+)
+"compile.ml" 97 2122 2148 "compile.ml" 97 2122 2149
+type(
+  X86_64.label
+)
+ident(
+  def x "compile.ml" 97 2122 2150 "compile.ml" 97 2122 2182
+)
+"compile.ml" 97 2122 2150 "compile.ml" 97 2122 2151
+type(
+  unit
+)
+"compile.ml" 97 2122 2152 "compile.ml" 97 2122 2153
+type(
+  X86_64.data
+)
+ident(
+  def l "compile.ml" 97 2122 2157 "compile.ml" 97 2122 2182
+)
+"compile.ml" 97 2122 2157 "compile.ml" 97 2122 2162
+type(
+  X86_64.label -> X86_64.data
+)
+ident(
+  ext_ref X86_64.label
+)
+"compile.ml" 97 2122 2163 "compile.ml" 97 2122 2164
+type(
+  X86_64.label
+)
+ident(
+  int_ref x "compile.ml" 97 2122 2148 "compile.ml" 97 2122 2149
+)
+"compile.ml" 97 2122 2157 "compile.ml" 97 2122 2164
+call(
+  stack
+)
+type(
+  X86_64.data
+)
+"compile.ml" 97 2122 2165 "compile.ml" 97 2122 2167
+type(
+  X86_64.data -> X86_64.data -> X86_64.data
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 97 2122 2168 "compile.ml" 97 2122 2173
+type(
+  int list -> X86_64.data
+)
+ident(
+  ext_ref X86_64.dquad
+)
+"compile.ml" 97 2122 2175 "compile.ml" 97 2122 2176
+type(
+  int
+)
+"compile.ml" 97 2122 2174 "compile.ml" 97 2122 2177
+type(
+  int list
+)
+"compile.ml" 97 2122 2168 "compile.ml" 97 2122 2177
+call(
+  stack
+)
+type(
+  X86_64.data
+)
+"compile.ml" 97 2122 2157 "compile.ml" 97 2122 2177
+call(
+  stack
+)
+type(
+  X86_64.data
+)
+"compile.ml" 97 2122 2178 "compile.ml" 97 2122 2180
+type(
+  X86_64.data -> X86_64.data -> X86_64.data
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 97 2122 2181 "compile.ml" 97 2122 2182
+type(
+  X86_64.data
+)
+ident(
+  int_ref l "compile.ml" 97 2122 2152 "compile.ml" 97 2122 2153
+)
+"compile.ml" 97 2122 2157 "compile.ml" 97 2122 2182
+call(
+  tail
+)
+type(
+  X86_64.data
+)
+"compile.ml" 97 2122 2143 "compile.ml" 97 2122 2183
+type(
+  X86_64.label -> unit -> X86_64.data -> X86_64.data
+)
+"compile.ml" 97 2122 2184 "compile.ml" 97 2122 2188
+type(
+  (X86_64.label, unit) Hashtbl.t
+)
+ident(
+  int_ref genv "compile.ml" 9 105 110 "compile.ml" 9 105 114
+)
+"compile.ml" 98 2190 2201 "compile.ml" 98 2190 2206
+type(
+  X86_64.label -> X86_64.data
+)
+ident(
+  ext_ref X86_64.label
+)
+"compile.ml" 98 2190 2207 "compile.ml" 98 2190 2220
+type(
+  X86_64.label
+)
+"compile.ml" 98 2190 2201 "compile.ml" 98 2190 2220
+call(
+  stack
+)
+type(
+  X86_64.data
+)
+"compile.ml" 98 2190 2221 "compile.ml" 98 2190 2223
+type(
+  X86_64.data -> X86_64.data -> X86_64.data
+)
+ident(
+  ext_ref X86_64.( ++ )
+)
+"compile.ml" 98 2190 2224 "compile.ml" 98 2190 2230
+type(
+  string -> X86_64.data
+)
+ident(
+  ext_ref X86_64.string
+)
+"compile.ml" 98 2190 2231 "compile.ml" 98 2190 2237
+type(
+  string
+)
+"compile.ml" 98 2190 2224 "compile.ml" 98 2190 2237
+call(
+  stack
+)
+type(
+  X86_64.data
+)
+"compile.ml" 98 2190 2200 "compile.ml" 98 2190 2238
+call(
+  stack
+)
+type(
+  X86_64.data
+)
+"compile.ml" 97 2122 2130 "compile.ml" 98 2190 2238
+call(
+  stack
+)
+type(
+  X86_64.data
+)
+"compile.ml" 84 1762 1766 "compile.ml" 99 2240 2245
+type(
+  X86_64.program
+)
+"compile.ml" 101 2253 2259 "compile.ml" 101 2253 2260
+type(
+  out_channel
+)
+ident(
+  def f "compile.ml" 102 2282 2284 "compile.ml" 105 2377 2390
+)
+"compile.ml" 101 2253 2263 "compile.ml" 101 2253 2271
+type(
+  string -> out_channel
+)
+ident(
+  ext_ref Pervasives.open_out
+)
+"compile.ml" 101 2253 2272 "compile.ml" 101 2253 2277
+type(
+  string
+)
+ident(
+  int_ref ofile "compile.ml" 80 1657 1679 "compile.ml" 80 1657 1684
+)
+"compile.ml" 101 2253 2263 "compile.ml" 101 2253 2277
+call(
+  stack
+)
+type(
+  out_channel
+)
+"compile.ml" 102 2282 2288 "compile.ml" 102 2282 2291
+type(
+  Format.formatter
+)
+ident(
+  def fmt "compile.ml" 103 2325 2327 "compile.ml" 105 2377 2390
+)
+"compile.ml" 102 2282 2294 "compile.ml" 102 2282 2318
+type(
+  out_channel -> Format.formatter
+)
+ident(
+  ext_ref Format.formatter_of_out_channel
+)
+"compile.ml" 102 2282 2319 "compile.ml" 102 2282 2320
+type(
+  out_channel
+)
+ident(
+  int_ref f "compile.ml" 101 2253 2259 "compile.ml" 101 2253 2260
+)
+"compile.ml" 102 2282 2294 "compile.ml" 102 2282 2320
+call(
+  stack
+)
+type(
+  Format.formatter
+)
+"compile.ml" 103 2325 2327 "compile.ml" 103 2325 2347
+type(
+  Format.formatter -> X86_64.program -> unit
+)
+ident(
+  ext_ref X86_64.print_program
+)
+"compile.ml" 103 2325 2348 "compile.ml" 103 2325 2351
+type(
+  Format.formatter
+)
+ident(
+  int_ref fmt "compile.ml" 102 2282 2288 "compile.ml" 102 2282 2291
+)
+"compile.ml" 103 2325 2352 "compile.ml" 103 2325 2353
+type(
+  X86_64.program
+)
+ident(
+  int_ref p "compile.ml" 83 1751 1757 "compile.ml" 83 1751 1758
+)
+"compile.ml" 103 2325 2327 "compile.ml" 103 2325 2353
+call(
+  stack
+)
+type(
+  unit
+)
+"compile.ml" 104 2356 2358 "compile.ml" 104 2356 2365
+type(
+  Format.formatter -> (unit, Format.formatter, unit) format -> unit
+)
+ident(
+  ext_ref Format.fprintf
+)
+"compile.ml" 104 2356 2366 "compile.ml" 104 2356 2369
+type(
+  Format.formatter
+)
+ident(
+  int_ref fmt "compile.ml" 102 2282 2288 "compile.ml" 102 2282 2291
+)
+"compile.ml" 104 2356 2370 "compile.ml" 104 2356 2374
+type(
+  (unit, Format.formatter, unit) format
+)
+"compile.ml" 104 2356 2358 "compile.ml" 104 2356 2374
+call(
+  stack
+)
+type(
+  unit
+)
+"compile.ml" 105 2377 2379 "compile.ml" 105 2377 2388
+type(
+  out_channel -> unit
+)
+ident(
+  ext_ref Pervasives.close_out
+)
+"compile.ml" 105 2377 2389 "compile.ml" 105 2377 2390
+type(
+  out_channel
+)
+ident(
+  int_ref f "compile.ml" 101 2253 2259 "compile.ml" 101 2253 2260
+)
+"compile.ml" 105 2377 2379 "compile.ml" 105 2377 2390
+call(
+  tail
+)
+type(
+  unit
+)
+"compile.ml" 104 2356 2358 "compile.ml" 105 2377 2390
+type(
+  unit
+)
+"compile.ml" 103 2325 2327 "compile.ml" 105 2377 2390
+type(
+  unit
+)
+"compile.ml" 102 2282 2284 "compile.ml" 105 2377 2390
+type(
+  unit
+)
+"compile.ml" 101 2253 2255 "compile.ml" 105 2377 2390
+type(
+  unit
+)
+"compile.ml" 83 1751 1753 "compile.ml" 105 2377 2390
+type(
+  unit
+)
+"compile.ml" 82 1720 1722 "compile.ml" 105 2377 2390
+type(
+  unit
+)
+"compile.ml" 81 1688 1690 "compile.ml" 105 2377 2390
+type(
+  unit
+)

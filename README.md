@@ -13,22 +13,24 @@ Variáveis
 - ... 
 - Array __tipo__ filled by __value__ ( Dá valores ao tipo de array pre definido )
 
+    arr 0 .. n 
+        0 até n (INCLUSIVE)
+    arr 2 .. 5
+        2 até 5 (INCLUSIVE)
 
 ## TO DO
 
 Interpreter:
 
-        type nome = [inicio .. fim] ;
-        type i_max = [10 .. maxint] ;
+    Invervalos serem apenas de valores positivos
 
-        size()
+    int -> int64
 
-        maxint
-        minint
+        maxint (qual é?)
+        minint -(qual é?)
 
     váriáveis locais:
         let x = 2 in x + 2 ;
-
 
 
 ## Simple Interpreter and Compiler for Natrix Language

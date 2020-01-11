@@ -123,14 +123,24 @@ let rec expression ctx = function
   | Earray (id) ->
       if not (Hashtbl.mem ctx id) then error "unbound variable";
       Hashtbl.find ctx id
-  | Eget (id, index) ->
+  | Eget (id, index) -> begin
     if not (Hashtbl.mem ctx id) then error ("unbound variable " ^ id);
-    match Hashtbl.find ctx id with
-      | Varray (arr, linf, lsup) ->
-        if (expr_int ctx index) < linf or (expr_int ctx index) > lsup
-        then error "index out of bounds"
-        else arr.((expr_int ctx index) - linf)
-      | _ -> error "array expected"
+      match Hashtbl.find ctx id with
+        | Varray (arr, linf, lsup) ->
+          if (expr_int ctx index) < linf or (expr_int ctx index) > lsup
+          then error "index out of bounds"
+          else arr.((expr_int ctx index) - linf)
+        | _ -> error "array expected"
+    end
+  | Esize e -> begin
+      match (expression ctx e) with
+        | Vnone -> Vint 0
+        | Vint n -> Vint n
+        | Vstring s -> Vint 1
+        | Vbool b -> if b then Vint 1 else Vint 0
+        | Vinterval (a, b) -> Vint (b - a + 1)
+        | Varray (arr, a, b) -> Vint (b - a + 1)
+    end
   | _ -> error "unsupported expression"
 
 
@@ -148,7 +158,7 @@ and statement ctx = function
       if not (Hashtbl.mem ctx t) then error ("unbound type " ^ t);
       match (Hashtbl.find ctx t) with
         | Varray (arr, linf, lsup) ->
-          let narr = (Array.make (lsup - linf) (expression ctx e)) in
+          let narr = (Array.make (lsup - linf + 1) (expression ctx e)) in (* conta com n    *)
             Hashtbl.replace ctx id (Varray (narr, linf, lsup))
         | _ -> error "type array expected"
     end

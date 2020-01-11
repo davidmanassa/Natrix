@@ -3,12 +3,12 @@ GENERATED = lexer.ml parser.ml parser.mli
 FLAGS = -annot -g
 
 all: natrix
-	./natrix test2.nx
+	./natrix test.nx
 	gcc -no-pie -g compiled.s -o executable.out
 	./executable.out
 
 interp: natrix
-	./natrix test.nx
+	./natrix --interpreter-only test.nx
 
 compiler: natrix
 	./natrix --compiler-only test.nx

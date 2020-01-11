@@ -16,6 +16,8 @@ type constant =
   | Cbool of bool
   | Cstring of string
   | Cint of int
+  | Cmaxint of int
+  | Cminint of int
 
 type expression =
   | Ecst of constant
@@ -24,6 +26,7 @@ type expression =
   | Einterval of expression * expression
   | Earray of ident
   | Eget of ident * expression
+  | Esize of expression
 
 and statement =
   | Sassign of ident * value_type * expression

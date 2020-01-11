@@ -25,11 +25,14 @@ type inter = 1..10 ;
 type arr = array inter of int ;
 var farr : arr filled by 4 ;
 
+
+foreach i in inter do { farr[i] := i; }
+
 print (farr) ;
 
-farr[9] := 2;
+print (  size(farr)  ) ;
 
-print (farr) ;
+print (  size(inter) ) ;
 
 
 
