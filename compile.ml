@@ -16,14 +16,17 @@ let rec alloc_expr env next = function
   | Ecst i ->
     Ecst i, next
 
+  | _ -> assert false
+
 let alloc_stmt = function
 
   | Sprint e ->
     Sprint e
 
+  | _ -> assert false
+
 let alloc = List.map alloc_stmt
 
-(******************************************************************************)
 (* produção de código *)
 
 let popn n = addq (imm n) (reg rsp)
@@ -53,6 +56,7 @@ let rec compile_expr =
             | Badd -> addq
             | Bsub -> subq
             | Bmul -> imulq
+            | _ -> assert false
           in
           comprec env next e1 ++
           comprec env next e2 ++
@@ -60,6 +64,8 @@ let rec compile_expr =
           popq rax ++
           op (reg rbx) (reg rax) ++
           pushq rax
+
+      | _ -> assert false
     
       in comprec StrMap.empty 0
 
@@ -72,14 +78,21 @@ let rec compile_stmt = function
 
   | Sblock bl ->
     block bl
+
+  | _ -> assert false
   
 and block = function
   | [a] -> compile_stmt a
-  | s :: sl ->  compile_stmt s; (++); block sl
+  | s :: sl ->  nop; compile_stmt s; 
+    block sl
+  | _ -> assert false
+
+let start p = 
+  match p with
+    | Sblock sb -> sb
 
 let compile_program p ofile =
-  let code = compile_stmt p in
-  let code = (++) code nop in
+  let code = List.map compile_stmt (start p) in let code = List.fold_right (++) code nop in
   let p =
     { text =
         glabel "main" ++

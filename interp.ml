@@ -12,18 +12,17 @@ let error s = raise (Error s)
     Listas são na verdade vetores redimensionáveis, porem neste contexto não há forma de modificar o comprimento.
 
 *)
+
 type value =
   | Vnone
   | Vbool of bool
   | Vint of int64
-  | Vstring of string
   | Varray of (value array * int64 * int64)
   | Vinterval of (int64 * int64)
 
 (* Vizualização *)
 let rec print_value = function
   | Vint n -> printf "%s" (Int64.to_string n)
-  | Vstring s -> printf "%s" s
   | Vbool true -> printf "True"
   | Vbool false -> printf "False"
   | Vinterval (a, b) -> printf "interval[%s to %s]" (Int64.to_string a) (Int64.to_string b)
@@ -42,44 +41,23 @@ let rec print_value = function
   e qualquer outro valor como True
 
 *)
+
 let is_false = function
   | Vnone -> false
   | Vbool false -> false
-  | Vstring "" -> false
-  | Vint x -> (x = Int64.zero)
+  | Vint x -> (Int64.equal x Int64.zero)
   | Varray (arr, linf, lsup) -> (Array.length arr) = 0
   | _ -> false
 
 let is_true v = not (is_false v)
 
-(* Comparações
 
-  Comparações entre diferentes tipos
-  
-*)
-let rec compare_list a1 n1 a2 n2 i =
-  if i = n1 && i = n2 then 0
-  else if i = n1 then -1
-  else if i = n2 then 1
-  else let c = compare_value a1.(i) a2.(i) in
-       if c <> 0 then c else compare_list a1 n1 a2 n2 (i + 1)
-
-and compare_value v1 v2 = match v1, v2 with
-  (*| Vlist a1, Vlist a2 ->
-    compare_list a1 (Array.length a1) a2 (Array.length a2) 0 *)
+let rec compare_value v1 v2 = match v1, v2 with
   | Vbool b1, Vint _ -> compare_value (Vint (if b1 then Int64.one else Int64.zero)) v2
   | Vint _, Vbool b2 -> compare_value v1 (Vint (if b2 then Int64.one else Int64.zero))
   | _ -> compare v1 v2
 
 
-(* Interpretação dos operadores binários
-
-   - o operador + é sobrecarregado : designa também a concatenação
-     das listas e das strings
-   - os operadores / e % devem levantar uma excepção se se tenta dividir
-     por zero
-
-*)
 let binary_operation op v1 v2 =
   match op, v1, v2 with
     | Badd, Vint n1, Vint n2 -> Vint (Int64.add n1 n2)
@@ -110,8 +88,6 @@ let rec expression ctx = function
       Vbool b
   | Ecst (Cint n) ->
       Vint n
-  | Ecst (Cstring s) ->
-      Vstring s
   | Eident id -> begin
     match id with
       | "maxint" -> (Vint Int64.max_int)
@@ -124,7 +100,8 @@ let rec expression ctx = function
         binary_operation op (expression ctx e1) (expression ctx e2)
   | Einterval (e1, e2) ->
       let linf, lsup = (expr_int ctx e1), (expr_int ctx e2) in
-        if linf > lsup then error "first limit need to be superior to the second limit";
+        if linf < Int64.zero or lsup < Int64.zero then error "Intervals need to be positive.";
+        if linf > lsup then error "First limit need to be superior to the second limit.";
         Vinterval ((expr_int ctx e1), (expr_int ctx e2))
   | Earray (id) ->
       if not (Hashtbl.mem ctx id) then error "unbound variable";
@@ -157,9 +134,9 @@ and expr_int ctx e = match expression ctx e with
 
 (* interpretação de uma instrução - não devolve nada *)
 and statement ctx = function
-  | Sassign (id, t, e) -> (*    Adicionar verificação para ver se corresponde com o tipo  /// Se já existir VAR ou TIPO com o nome vai redefinir  *)
+  | Sassign (id, t, e) -> 
     Hashtbl.replace ctx id (expression ctx e)
-  | Sassignarray (id, t, e) -> (* Dá valores ao array // T é expressão Varray*)
+  | Sassignarray (id, t, e) -> 
     begin
       if not (Hashtbl.mem ctx t) then error ("unbound type " ^ t);
       match (Hashtbl.find ctx t) with
@@ -197,9 +174,9 @@ and statement ctx = function
           end done
         | _ -> error "interval expected"
     end
-  | Stype (id, e) -> (* Tipos simples são intervalos ou inteiros, então guardamos os como varáveis normais *)
+  | Stype (id, e) -> 
     Hashtbl.replace ctx id (expression ctx e)
-  | Stypearray (id, indices, vt) -> (* Tipo array / Indices pode ser um intervalo ou um inteiro  / Tipo array apenas define tamanho/indexing do array *)
+  | Stypearray (id, indices, vt) ->
     begin
       match expression ctx indices with
         | Vint n -> (* array 0 até n *)

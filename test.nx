@@ -1,8 +1,12 @@
 
+
 print(41+1);
 
 
 print (maxint) ;
+
+var maxint : int = 10 ;
+
 print (maxint + 10) ;
 
 type interval =  [ 2 .. maxint ]  ;
@@ -13,12 +17,11 @@ print (minint) ;
 
 // Isto é um comentário
 
-if (2<1)
+if (2 == 2)
 then {
-    print("1+1");
+    print (111111111111111);
 } else {
-    print("false");
-    print("false2");
+    print(0000000000000000);
 }
 
 var x : int = 1;
@@ -42,6 +45,8 @@ print (farr) ;
 farr[9] := 2;
 
 print (farr) ;
+
+print (size(farr)) ;
 
 
 

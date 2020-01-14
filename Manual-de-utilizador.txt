@@ -1,0 +1,6 @@
+Manual de utilizador para a linguagem Natrix:
+
+make : compila o compilador do ficheiro test.nx e compila intrepador e executa no ficheiro test.nx
+make compiler : compila e executa compilador do ficheiro test2.nx
+make interp : compila e executa interpretador no ficheiro test.nx
+make clean : limpeza dos ficheiros gerados

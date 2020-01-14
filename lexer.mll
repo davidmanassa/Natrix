@@ -51,9 +51,9 @@ rule next_tokens = parse
   | '-'                           { [MINUS] }
   | '*'                           { [TIMES] }
   | '/'                           { [DIV] }
+  | "=="                          { [BINOP Bequal] }
   | "!="                          { [BINOP Bnotequal] }
   | '='                           { [EQUAL] }
-  | '='                           { [BINOP Bequal] }
   | ':'                           { [COLON] }
   | '('                           { [LPARENT] }
   | ')'                           { [RPARENT] }
