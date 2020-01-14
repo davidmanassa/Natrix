@@ -1,39 +1,4 @@
 # Natrix
-
-## TO DO
-
-Interpreter:
-
-    váriáveis locais:
-        let x = 2 in x + 2 ;
-
-    Array sem necessidade de tipo array
-
-    ---
-
-    type i = [10 .. 20] ;
-    type i_max =[10 .. maxint] ;
-    var x : int = 5 ;
-
-    type arr = array i of i_max ;
-    // Como é este array ?
-
-    var y : i_max = 10 ;
-    // O que é esta variável ?          
-
-    tab[5] := let y = x + 3 in y * 5 ;
-    // potencialmente dá erro se o resultado está fora do intervalo i_max
-    // tab não está declarado, é suposto ?
-    // Qual é o resultado disto?
-
-    y := y + 1 ;
-    // Qual este resultado então?
-
-Compiler: 
-
-    can do more little things
-
-
 ## Simple Interpreter and Compiler for Natrix Language
 
 Exercício 1: ( Programar Natrix )
