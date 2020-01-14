@@ -1,36 +1,37 @@
 # Natrix
 
-## Resume
-
-Tipos são:
-- Tipo int
-- Tipo intervalo
-- Tipo array (Apenas inicializa com certo tamanho e indexing)
-
-Variáveis
-- Int
-- String
-- ... 
-- Array __tipo__ filled by __value__ ( Dá valores ao tipo de array pre definido )
-
-    arr 0 .. n 
-        0 até n (INCLUSIVE)
-    arr 2 .. 5
-        2 até 5 (INCLUSIVE)
-
 ## TO DO
 
 Interpreter:
 
-    Invervalos serem apenas de valores positivos
-
-    int -> int64
-
-        maxint (qual é?)
-        minint -(qual é?)
-
     váriáveis locais:
         let x = 2 in x + 2 ;
+
+    Array sem necessidade de tipo array
+
+    ---
+
+    type i = [10 .. 20] ;
+    type i_max =[10 .. maxint] ;
+    var x : int = 5 ;
+
+    type arr = array i of i_max ;
+    // Como é este array ?
+
+    var y : i_max = 10 ;
+    // O que é esta variável ?          
+
+    tab[5] := let y = x + 3 in y * 5 ;
+    // potencialmente dá erro se o resultado está fora do intervalo i_max
+    // tab não está declarado, é suposto ?
+    // Qual é o resultado disto?
+
+    y := y + 1 ;
+    // Qual este resultado então?
+
+Compiler: 
+
+    can do more little things
 
 
 ## Simple Interpreter and Compiler for Natrix Language

@@ -1,14 +1,27 @@
 
+
 print(41+1);
+
+
+print (maxint) ;
+
+var maxint : int = 10 ;
+
+print (maxint + 10) ;
+
+type interval =  [ 2 .. maxint ]  ;
+
+print (interval) ;
+
+print (minint) ;
 
 // Isto é um comentário
 
-if (2<1)
+if (2 == 2)
 then {
-    print("1+1");
+    print (111111111111111);
 } else {
-    print("false");
-    print("false2");
+    print(0000000000000000);
 }
 
 var x : int = 1;
@@ -17,22 +30,24 @@ x := x + 3;
 
 print(2..8);
 
-foreach i in 2 .. 6 do {
-    print(i);
-}
 
 type inter = 1..10 ;
 type arr = array inter of int ;
 var farr : arr filled by 4 ;
 
 
+foreach i in inter do {
+    farr[i] := i;
+}
+
+print (farr) ;
+
 foreach i in inter do { farr[i] := i; }
 
 print (farr) ;
 
-print (  size(farr)  ) ;
+print (size(farr)) ;
 
 print (  size(inter) ) ;
-
 
 

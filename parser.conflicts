@@ -1,5 +1,35 @@
 
-** Conflict (shift/reduce) in state 30.
+** Conflict (shift/reduce) in state 36.
+** Tokens involved: TIMES PLUS OR MINUS DOT DIV BINOP AND
+** The following explanations concentrate on token TIMES.
+** This state is reached from program after reading:
+
+PRINT LPARENT LBRACKET expression DOT DOT expression 
+
+** The derivations that appear below have the following common factor:
+** (The question mark symbol (?) represents the spot where the derivations begin to differ.)
+
+program 
+nonempty_list(statement) EOF 
+statement 
+PRINT LPARENT expression RPARENT SEMICOLON 
+              (?)
+
+** In state 36, looking ahead at TIMES, shifting is permitted
+** because of the following sub-derivation:
+
+LBRACKET expression DOT DOT expression RBRACKET 
+                            expression . TIMES expression 
+
+** In state 36, looking ahead at TIMES, reducing production
+** expression -> expression DOT DOT expression 
+** is permitted because of the following sub-derivation:
+
+LBRACKET expression DOT DOT expression RBRACKET 
+         expression TIMES expression // lookahead token appears
+         expression DOT DOT expression . 
+
+** Conflict (shift/reduce) in state 31.
 ** Token involved: DOT
 ** This state is reached from program after reading:
 
@@ -14,20 +44,20 @@ statement
 PRINT LPARENT expression RPARENT SEMICOLON 
               (?)
 
-** In state 30, looking ahead at DOT, reducing production
+** In state 31, looking ahead at DOT, reducing production
 ** expression -> expression AND expression 
 ** is permitted because of the following sub-derivation:
 
 expression DOT DOT expression // lookahead token appears
 expression AND expression . 
 
-** In state 30, looking ahead at DOT, shifting is permitted
+** In state 31, looking ahead at DOT, shifting is permitted
 ** because of the following sub-derivation:
 
 expression AND expression 
                expression . DOT DOT expression 
 
-** Conflict (shift/reduce) in state 28.
+** Conflict (shift/reduce) in state 29.
 ** Token involved: DOT
 ** This state is reached from program after reading:
 
@@ -42,20 +72,20 @@ statement
 PRINT LPARENT expression RPARENT SEMICOLON 
               (?)
 
-** In state 28, looking ahead at DOT, reducing production
+** In state 29, looking ahead at DOT, reducing production
 ** expression -> expression BINOP expression 
 ** is permitted because of the following sub-derivation:
 
 expression DOT DOT expression // lookahead token appears
 expression BINOP expression . 
 
-** In state 28, looking ahead at DOT, shifting is permitted
+** In state 29, looking ahead at DOT, shifting is permitted
 ** because of the following sub-derivation:
 
 expression BINOP expression 
                  expression . DOT DOT expression 
 
-** Conflict (shift/reduce) in state 26.
+** Conflict (shift/reduce) in state 27.
 ** Token involved: DOT
 ** This state is reached from program after reading:
 
@@ -70,20 +100,20 @@ statement
 PRINT LPARENT expression RPARENT SEMICOLON 
               (?)
 
-** In state 26, looking ahead at DOT, reducing production
+** In state 27, looking ahead at DOT, reducing production
 ** expression -> expression MINUS expression 
 ** is permitted because of the following sub-derivation:
 
 expression DOT DOT expression // lookahead token appears
 expression MINUS expression . 
 
-** In state 26, looking ahead at DOT, shifting is permitted
+** In state 27, looking ahead at DOT, shifting is permitted
 ** because of the following sub-derivation:
 
 expression MINUS expression 
                  expression . DOT DOT expression 
 
-** Conflict (shift/reduce) in state 24.
+** Conflict (shift/reduce) in state 25.
 ** Token involved: DOT
 ** This state is reached from program after reading:
 
@@ -98,20 +128,20 @@ statement
 PRINT LPARENT expression RPARENT SEMICOLON 
               (?)
 
-** In state 24, looking ahead at DOT, reducing production
+** In state 25, looking ahead at DOT, reducing production
 ** expression -> expression OR expression 
 ** is permitted because of the following sub-derivation:
 
 expression DOT DOT expression // lookahead token appears
 expression OR expression . 
 
-** In state 24, looking ahead at DOT, shifting is permitted
+** In state 25, looking ahead at DOT, shifting is permitted
 ** because of the following sub-derivation:
 
 expression OR expression 
               expression . DOT DOT expression 
 
-** Conflict (shift/reduce) in state 22.
+** Conflict (shift/reduce) in state 23.
 ** Token involved: DOT
 ** This state is reached from program after reading:
 
@@ -126,20 +156,20 @@ statement
 PRINT LPARENT expression RPARENT SEMICOLON 
               (?)
 
-** In state 22, looking ahead at DOT, reducing production
+** In state 23, looking ahead at DOT, reducing production
 ** expression -> expression DIV expression 
 ** is permitted because of the following sub-derivation:
 
 expression DOT DOT expression // lookahead token appears
 expression DIV expression . 
 
-** In state 22, looking ahead at DOT, shifting is permitted
+** In state 23, looking ahead at DOT, shifting is permitted
 ** because of the following sub-derivation:
 
 expression DIV expression 
                expression . DOT DOT expression 
 
-** Conflict (shift/reduce) in state 20.
+** Conflict (shift/reduce) in state 21.
 ** Token involved: DOT
 ** This state is reached from program after reading:
 
@@ -154,20 +184,20 @@ statement
 PRINT LPARENT expression RPARENT SEMICOLON 
               (?)
 
-** In state 20, looking ahead at DOT, reducing production
+** In state 21, looking ahead at DOT, reducing production
 ** expression -> expression PLUS expression 
 ** is permitted because of the following sub-derivation:
 
 expression DOT DOT expression // lookahead token appears
 expression PLUS expression . 
 
-** In state 20, looking ahead at DOT, shifting is permitted
+** In state 21, looking ahead at DOT, shifting is permitted
 ** because of the following sub-derivation:
 
 expression PLUS expression 
                 expression . DOT DOT expression 
 
-** Conflict (shift/reduce) in state 18.
+** Conflict (shift/reduce) in state 19.
 ** Tokens involved: TIMES PLUS OR MINUS DOT DIV BINOP AND
 ** The following explanations concentrate on token TIMES.
 ** This state is reached from program after reading:
@@ -183,20 +213,20 @@ statement
 PRINT LPARENT expression RPARENT SEMICOLON 
               (?)
 
-** In state 18, looking ahead at TIMES, shifting is permitted
+** In state 19, looking ahead at TIMES, shifting is permitted
 ** because of the following sub-derivation:
 
 expression DOT DOT expression 
                    expression . TIMES expression 
 
-** In state 18, looking ahead at TIMES, reducing production
+** In state 19, looking ahead at TIMES, reducing production
 ** expression -> expression DOT DOT expression 
 ** is permitted because of the following sub-derivation:
 
 expression TIMES expression // lookahead token appears
 expression DOT DOT expression . 
 
-** Conflict (shift/reduce) in state 15.
+** Conflict (shift/reduce) in state 16.
 ** Token involved: DOT
 ** This state is reached from program after reading:
 
@@ -211,14 +241,14 @@ statement
 PRINT LPARENT expression RPARENT SEMICOLON 
               (?)
 
-** In state 15, looking ahead at DOT, reducing production
+** In state 16, looking ahead at DOT, reducing production
 ** expression -> expression TIMES expression 
 ** is permitted because of the following sub-derivation:
 
 expression DOT DOT expression // lookahead token appears
 expression TIMES expression . 
 
-** In state 15, looking ahead at DOT, shifting is permitted
+** In state 16, looking ahead at DOT, shifting is permitted
 ** because of the following sub-derivation:
 
 expression TIMES expression 

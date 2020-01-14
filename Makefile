@@ -11,7 +11,7 @@ interp: natrix
 	./natrix --interpreter-only test.nx
 
 compiler: natrix
-	./natrix --compiler-only test.nx
+	./natrix --compiler-only test2.nx
 	gcc -no-pie -g compiled.s -o executable.out
 	./executable.out
 
@@ -40,7 +40,7 @@ natrix: $(CMO)
 	menhir -v $<
 
 clean:
-	rm -f *.cm[io] *.o *.annot *~ natrix $(GENERATED)
+	rm -f *.cm[io] *.o *.annot *~ natrix $(GENERATED) compiled.s
 	rm -f parser.output parser.automaton
 
 .depend depend:$(GENERATED)
